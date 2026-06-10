@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- ============================================================
+     EDIT: Page title + meta description (SEO)
+     ============================================================ -->
+<title>STUDIO MERIDIAN — Websites that bring in leads</title>
+<meta name="description" content="Conversion-focused web design for [your niche]. Your website is a revenue tool, not a one-and-done project." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   DESIGN TOKENS  —  Verlua-inspired (navy · teal · cream)
+   ============================================================ */
+:root{
+  --paper:#faf8f5;          /* warm off-white background */
+  --paper-2:#f3f0eb;        /* alt panel */
+  --navy:#0a1628;           /* primary dark */
+  --slate:#1a2332;          /* dark slate */
+  --teal:#00d4aa;           /* bright accent */
+  --teal-cta:#00b899;       /* button */
+  --teal-hover:#00a088;
+  --ink:#1f1d1a;            /* body text */
+  --muted:#6b7280;          /* muted text */
+  --line:#e8e4df;           /* hairline border */
+
+  --font-display:"Space Grotesk", system-ui, sans-serif;
+  --font-body:"Inter", system-ui, sans-serif;
+
+  --maxw:1200px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--teal);color:var(--navy)}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ---- type ---- */
+.kicker{
+  font-family:var(--font-body);font-size:13px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--teal-cta);display:inline-flex;align-items:center;gap:10px;
+}
+.kicker::before{content:"";width:24px;height:2px;background:var(--teal-cta)}
+h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.06;letter-spacing:-.02em;color:var(--navy)}
+.accent{color:var(--teal-cta)}
+
+/* ---- buttons ---- */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--font-body);font-size:15px;font-weight:600;
+  padding:16px 28px;border-radius:10px;border:1px solid var(--teal-cta);
+  background:var(--teal-cta);color:#fff;cursor:pointer;
+  transition:transform .35s var(--ease), background .3s, box-shadow .35s var(--ease);
+  box-shadow:0 6px 20px rgba(0,184,153,.22);
+}
+.btn:hover{background:var(--teal-hover);border-color:var(--teal-hover);transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,184,153,.32)}
+.btn svg{width:16px;height:16px;transition:transform .35s var(--ease)}
+.btn:hover svg{transform:translateX(3px)}
+.btn--ghost{background:transparent;color:var(--navy);border-color:var(--line);box-shadow:none}
+.btn--ghost:hover{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:none}
+.btn--light{background:#fff;color:var(--navy);border-color:#fff}
+.btn--light:hover{background:var(--teal);color:var(--navy);border-color:var(--teal)}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
+  border-bottom:1px solid transparent;
+}
+header.scrolled{background:rgba(250,248,245,.85);backdrop-filter:blur(14px);border-color:var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+.logo{font-family:var(--font-display);font-size:24px;font-weight:700;letter-spacing:-.02em;color:var(--navy)}
+.logo b{color:var(--teal-cta)}
+.nav-links{display:flex;gap:36px;align-items:center}
+.nav-links a{font-size:15px;font-weight:500;color:var(--muted);transition:color .3s}
+.nav-links a:hover{color:var(--navy)}
+.nav-right{display:flex;align-items:center;gap:22px}
+.nav-phone{font-size:15px;font-weight:600;color:var(--navy)}
+.nav-cta{font-size:14px;font-weight:600;background:var(--teal-cta);color:#fff;padding:11px 22px;border-radius:9px;transition:.3s var(--ease);box-shadow:0 4px 14px rgba(0,184,153,.25)}
+.nav-cta:hover{background:var(--teal-hover);transform:translateY(-1px)}
+.menu-btn{display:none;font-size:14px;font-weight:600;border:1px solid var(--line);padding:10px 16px;background:none;cursor:pointer;border-radius:8px}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{padding:160px 0 100px}
+.hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:64px;align-items:center}
+.hero h1{font-size:clamp(44px,5.8vw,82px);letter-spacing:-.03em}
+.hero h1 .word{display:inline-block;opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.loaded .hero h1 .word{opacity:1;transform:none}
+.hero-sub{max-width:500px;margin-top:26px;color:var(--muted);font-size:19px;line-height:1.6}
+.fade-up{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.loaded .fade-up{opacity:1;transform:none}
+.loaded .d1{transition-delay:.5s}.loaded .d2{transition-delay:.62s}.loaded .d3{transition-delay:.74s}
+.hero-cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px;align-items:center}
+.trust-row{display:flex;align-items:center;gap:14px;margin-top:32px}
+.trust-row .stars{color:#f59e0b;font-size:16px;letter-spacing:1px}
+.trust-row .t{font-size:14px;color:var(--muted)}
+.trust-row .t b{color:var(--navy)}
+
+/* hero founder card */
+.founder-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 24px 60px rgba(10,22,40,.08)}
+.founder-photo{aspect-ratio:1/1;border-radius:12px;background:linear-gradient(160deg,#1a2332,#0a1628);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.founder-photo .ph{font-size:13px;font-weight:600;letter-spacing:.06em;color:rgba(255,255,255,.6);border:1px dashed rgba(255,255,255,.35);padding:10px 16px;border-radius:8px}
+.founder-photo::after{content:"";position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(transparent,rgba(10,22,40,.7))}
+.founder-meta{display:flex;align-items:center;justify-content:space-between;padding:16px 10px 8px}
+.founder-meta .name{font-family:var(--font-display);font-weight:600;color:var(--navy);font-size:17px}
+.founder-meta .role{font-size:13px;color:var(--muted)}
+.founder-badge{background:var(--paper-2);border-radius:8px;padding:8px 12px;text-align:center}
+.founder-badge .n{font-family:var(--font-display);font-weight:700;color:var(--navy);font-size:20px;line-height:1}
+.founder-badge .l{font-size:10.5px;color:var(--muted);letter-spacing:.03em}
+
+/* ============================================================
+   SECTION SCAFFOLD
+   ============================================================ */
+section{padding:110px 0}
+.sec-head{max-width:680px;margin:0 auto 64px;text-align:center}
+.sec-head h2{font-size:clamp(34px,4.6vw,58px);margin-top:18px}
+.sec-head p{color:var(--muted);font-size:18px;margin-top:18px}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* ============================================================
+   SERVICE / REASON CARDS
+   ============================================================ */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:38px 34px;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(10,22,40,.09);border-color:#d8d2c8}
+.card .ic{width:52px;height:52px;border-radius:12px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;margin-bottom:22px;font-size:24px}
+.card h3{font-size:23px;margin-bottom:12px}
+.card p{color:var(--muted);font-size:15.5px}
+
+/* ============================================================
+   PORTFOLIO
+   ============================================================ */
+.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:32px}
+.work{cursor:pointer}
+.work .thumb{
+  aspect-ratio:16/11;border-radius:16px;overflow:hidden;position:relative;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;box-shadow:0 12px 36px rgba(10,22,40,.07);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease);
+}
+.work:hover .thumb{transform:translateY(-5px);box-shadow:0 26px 60px rgba(10,22,40,.13)}
+/* EDIT: replace each .thumb gradient with <img src="screenshot.jpg"> */
+.work:nth-child(1) .thumb{background:linear-gradient(135deg,#0a1628,#219ebc)}
+.work:nth-child(2) .thumb{background:linear-gradient(135deg,#0a1628,#00b899)}
+.work:nth-child(3) .thumb{background:linear-gradient(135deg,#1a2332,#023047)}
+.work:nth-child(4) .thumb{background:linear-gradient(135deg,#0a1628,#00d4aa)}
+.work:nth-child(5) .thumb{background:linear-gradient(135deg,#1a2332,#219ebc)}
+.work:nth-child(6) .thumb{background:linear-gradient(135deg,#0a1628,#1a2332)}
+.work .thumb .ph{font-size:12px;font-weight:600;letter-spacing:.08em;color:rgba(255,255,255,.7);border:1px dashed rgba(255,255,255,.4);padding:9px 16px;border-radius:8px}
+.work .view{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .45s var(--ease);background:rgba(10,22,40,.35)}
+.work:hover .view{opacity:1}
+.work .view span{background:#fff;color:var(--navy);font-size:14px;font-weight:600;padding:12px 24px;border-radius:9px;transform:translateY(8px);transition:transform .45s var(--ease)}
+.work:hover .view span{transform:none}
+.work .info{display:flex;justify-content:space-between;align-items:center;margin-top:20px}
+.work .info h3{font-size:22px}
+.work .info .tag{font-size:13px;font-weight:500;color:var(--muted)}
+.work .result{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:600;color:var(--teal-cta);margin-top:8px}
+.work .result::before{content:"↑";font-weight:700}
+
+/* ============================================================
+   PROCESS (5 steps) — Verlua signature
+   ============================================================ */
+.process{background:var(--navy);color:#fff}
+.process .sec-head h2{color:#fff}
+.process .sec-head p{color:rgba(255,255,255,.65)}
+.process .kicker{color:var(--teal)}
+.process .kicker::before{background:var(--teal)}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+.step{padding:38px 26px;border-left:1px solid rgba(255,255,255,.1);transition:background .4s}
+.step:first-child{border-left:none}
+.step:hover{background:var(--slate)}
+.step .n{font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--teal);margin-bottom:18px}
+.step h3{font-size:19px;color:#fff;margin-bottom:10px}
+.step p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.55}
+
+/* ============================================================
+   PAIN & SOLUTION
+   ============================================================ */
+.ps-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.ps-col{padding:46px 42px;border-radius:16px;border:1px solid var(--line)}
+.ps-col.pain{background:#fff}
+.ps-col.sol{background:var(--navy);color:#fff;border-color:var(--navy)}
+.ps-col .lbl{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;display:block}
+.ps-col.pain .lbl{color:#ef4444}
+.ps-col.sol .lbl{color:var(--teal)}
+.ps-col h3{font-size:26px;margin-bottom:8px}
+.ps-col.sol h3{color:#fff}
+.ps-list{list-style:none;margin-top:24px}
+.ps-list li{padding:16px 0;border-top:1px solid var(--line);font-size:16px;display:flex;gap:13px;align-items:flex-start}
+.ps-col.sol .ps-list li{border-color:rgba(255,255,255,.14);color:rgba(255,255,255,.9)}
+.ps-list li .mk{flex-shrink:0;font-weight:700}
+.ps-col.pain .mk{color:#ef4444}
+.ps-col.sol .mk{color:var(--teal)}
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+.testi-wrap{max-width:900px;margin:0 auto;text-align:center}
+.testi-wrap .stars{color:#f59e0b;font-size:22px;letter-spacing:3px;margin-bottom:24px}
+.quote{font-family:var(--font-display);font-size:clamp(24px,3.2vw,38px);line-height:1.3;font-weight:500;color:var(--navy)}
+.quote .accent{color:var(--teal-cta)}
+.testi-foot{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:36px}
+.avatar{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--teal),var(--teal-cta));display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:20px;color:var(--navy);flex-shrink:0}
+.testi-foot .who{text-align:left}
+.testi-foot .who b{display:block;font-weight:600;font-size:16px;color:var(--navy)}
+.testi-foot .who span{font-size:13.5px;color:var(--muted)}
+.testi-nav{display:flex;gap:10px;justify-content:center;margin-top:34px}
+.testi-nav button{width:46px;height:46px;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;border-radius:10px;font-size:16px;transition:.3s}
+.testi-nav button:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* logos marquee */
+.marquee{margin-top:72px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.marquee-track{display:flex;gap:64px;width:max-content;animation:scroll 34s linear infinite}
+.marquee-track span{font-family:var(--font-display);font-size:24px;font-weight:600;color:var(--muted);white-space:nowrap;opacity:.7}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ============================================================
+   REVIEWS GRID
+   ============================================================ */
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.rev{background:#fff;border:1px solid var(--line);padding:30px;border-radius:14px;transition:.4s var(--ease)}
+.rev:hover{transform:translateY(-5px);box-shadow:0 20px 44px rgba(10,22,40,.08)}
+.rev .stars{color:#f59e0b;font-size:15px;letter-spacing:2px}
+.rev p{margin:16px 0 20px;font-size:15.5px;color:var(--ink)}
+.rev .by{font-size:13.5px;color:var(--muted)}
+.rev .by b{color:var(--navy)}
+
+/* ============================================================
+   ABOUT / FOUNDER QUOTE
+   ============================================================ */
+.about{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:center}
+.about-photo{aspect-ratio:4/5;border-radius:18px;border:1px solid var(--line);background:linear-gradient(160deg,#1a2332,#0a1628);display:flex;align-items:center;justify-content:center;box-shadow:0 24px 60px rgba(10,22,40,.1)}
+.about-photo .ph{font-size:13px;font-weight:600;color:rgba(255,255,255,.6);border:1px dashed rgba(255,255,255,.35);padding:10px 16px;border-radius:8px}
+.about h2{font-size:clamp(30px,3.8vw,48px);margin:18px 0 24px}
+.about p{color:var(--muted);font-size:17px;margin-bottom:18px;max-width:560px}
+.about p strong{color:var(--navy);font-weight:600}
+.about-stats{display:flex;gap:46px;margin-top:32px}
+.about-stats .n{font-family:var(--font-display);font-size:38px;font-weight:700;color:var(--navy)}
+.about-stats .t{font-size:13px;color:var(--muted)}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+.faq-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:60px;align-items:start}
+.faq-list{border-top:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{width:100%;background:none;border:none;cursor:pointer;text-align:left;padding:26px 0;display:flex;justify-content:space-between;gap:20px;align-items:center;font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--navy)}
+.faq-q .ic{font-size:24px;color:var(--teal-cta);transition:transform .4s var(--ease);flex-shrink:0;line-height:1}
+.faq-item.open .ic{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .5s var(--ease)}
+.faq-a p{padding:0 0 26px;color:var(--muted);max-width:640px}
+
+/* ============================================================
+   FINAL CTA + FOOTER
+   ============================================================ */
+.cta{background:var(--navy);color:#fff;border-radius:24px;padding:84px 60px;text-align:center;position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;top:-40%;right:-10%;width:480px;height:480px;background:radial-gradient(circle,rgba(0,212,170,.22),transparent 70%);pointer-events:none}
+.cta h2{font-size:clamp(34px,5vw,68px);color:#fff;position:relative}
+.cta p{max-width:480px;margin:22px auto 34px;font-size:18px;color:rgba(255,255,255,.75);position:relative}
+.cta-risk{font-size:14px;color:rgba(255,255,255,.65);margin-top:20px;position:relative}
+
+footer{padding:70px 0 50px}
+.foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:40px}
+.foot-top .logo{font-size:30px}
+.foot-top p{color:var(--muted);max-width:300px;margin-top:14px;font-size:15px}
+.foot-col h4{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);margin-bottom:16px}
+.foot-col a{display:block;color:var(--muted);margin-bottom:10px;transition:color .3s;font-size:15px}
+.foot-col a:hover{color:var(--teal-cta)}
+.foot-cols{display:flex;gap:70px}
+.foot-bottom{display:flex;justify-content:space-between;padding-top:28px;font-size:13.5px;color:var(--muted);flex-wrap:wrap;gap:12px}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:980px){
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .step{border-left:none;border-top:1px solid rgba(255,255,255,.1)}
+}
+@media(max-width:880px){
+  .nav-links,.nav-phone{display:none}
+  .menu-btn{display:block}
+  .hero-grid{grid-template-columns:1fr;gap:48px}
+  .cards,.work-grid,.ps-grid,.about,.faq-grid,.rev-grid,.steps{grid-template-columns:1fr}
+  .step{border-top:1px solid rgba(255,255,255,.1)}
+  .sec-head{margin-bottom:44px}
+  .cta{padding:56px 26px}
+  .wrap{padding:0 22px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ NAV ============================================================ -->
+<header id="hdr">
+  <div class="wrap">
+    <nav>
+      <!-- EDIT: studio / your name -->
+      <a href="#" class="logo">Studio<b>Meridian</b></a>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#process">Process</a>
+        <a href="#about">About</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-right">
+        <!-- EDIT: phone -->
+        <a href="tel:+10000000000" class="nav-phone">(000) 000-0000</a>
+        <a href="#contact" class="nav-cta">Book a call</a>
+      </div>
+      <button class="menu-btn" id="menuBtn">Menu</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================================================ HERO ============================================================ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="kicker fade-up d1" style="margin-bottom:24px">Conversion-focused web design</span>
+        <!-- EDIT: headline -->
+        <h1>
+          <span class="word">Your</span> <span class="word">website</span> <span class="word">should</span>
+          <span class="word">bring</span> <span class="word">in</span> <span class="word accent">leads.</span>
+        </h1>
+        <p class="hero-sub fade-up d2">I design and build websites for [your niche] that turn visitors into booked calls. Your website is a revenue tool — not a one-and-done project.</p>
+        <div class="hero-cta-row fade-up d3">
+          <a href="#contact" class="btn">Book a free strategy call
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#work" class="btn btn--ghost">See the results</a>
+        </div>
+        <div class="trust-row fade-up d3">
+          <span class="stars">★★★★★</span>
+          <span class="t">Rated <b>5.0</b> by 40+ clients · <b>120+</b> sites shipped</span>
+        </div>
+      </div>
+
+      <!-- founder card -->
+      <aside class="founder-card fade-up d3">
+        <!-- EDIT: replace .founder-photo with <img src="your-photo.jpg"> -->
+        <div class="founder-photo"><span class="ph">Your photo here</span></div>
+        <div class="founder-meta">
+          <div>
+            <div class="name">[Your Name]</div>
+            <div class="role">Founder &amp; Designer</div>
+          </div>
+          <div class="founder-badge">
+            <div class="n">2.4×</div>
+            <div class="l">avg. lift</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ SERVICE / REASON CARDS ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Why pick me</span>
+      <h2>Three reasons clients choose me over an agency.</h2>
+    </div>
+    <div class="cards">
+      <!-- EDIT: your 3 reasons -->
+      <div class="card reveal">
+        <div class="ic">🎯</div>
+        <h3>Specialised, not generic</h3>
+        <p>I build for one industry only — so I already know what makes your customers say yes, and your competitors don't.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic">📈</div>
+        <h3>Designed to convert</h3>
+        <p>Every section earns trust, then drives one action. No vanity design — just more booked work and measurable lift.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ic">⚡</div>
+        <h3>Launched in 14 days</h3>
+        <p>A fixed timeline and a fixed price. You go live fast, with zero surprises and nothing buried in fine print.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ PORTFOLIO ============================================================ -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Selected work</span>
+      <h2>Real sites. Real results.</h2>
+      <p>A look at recent builds — each designed around outcomes, not decoration. Swap these placeholders for your screenshots.</p>
+    </div>
+
+    <div class="work-grid">
+      <!-- EDIT each card: replace .thumb with <img>, update h3/tag/result -->
+      <article class="work reveal">
+        <div class="thumb"><span class="ph">Drop screenshot here</span><div class="view"><span>View project →</span></div></div>
+        <div class="info"><h3>Project One</h3><span class="tag">Brand · Web</span></div>
+        <div class="result">180% more enquiries in 90 days</div>
+      </article>
+      <article class="work reveal">
+        <div class="thumb"><span class="ph">Drop screenshot here</span><div class="view"><span>View project →</span></div></div>
+        <div class="info"><h3>Project Two</h3><span class="tag">E-commerce</span></div>
+        <div class="result">2.4× checkout conversion</div>
+      </article>
+      <article class="work reveal">
+        <div class="thumb"><span class="ph">Drop screenshot here</span><div class="view"><span>View project →</span></div></div>
+        <div class="info"><h3>Project Three</h3><span class="tag">Local service</span></div>
+        <div class="result">Fully booked in 6 weeks</div>
+      </article>
+      <article class="work reveal">
+        <div class="thumb"><span class="ph">Drop screenshot here</span><div class="view"><span>View project →</span></div></div>
+        <div class="info"><h3>Project Four</h3><span class="tag">SaaS · Landing</span></div>
+        <div class="result">3.1% sign-up rate</div>
+      </article>
+      <article class="work reveal">
+        <div class="thumb"><span class="ph">Drop screenshot here</span><div class="view"><span>View project →</span></div></div>
+        <div class="info"><h3>Project Five</h3><span class="tag">Hospitality</span></div>
+        <div class="result">60% more direct bookings</div>
+      </article>
+      <article class="work reveal">
+        <div class="thumb"><span class="ph">Drop screenshot here</span><div class="view"><span>View project →</span></div></div>
+        <div class="info"><h3>Project Six</h3><span class="tag">Portfolio</span></div>
+        <div class="result">Landed 3 dream clients</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ PROCESS (5 steps) ============================================================ -->
+<section id="process" class="process">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">How it works</span>
+      <h2>A clear path from first call to launch.</h2>
+      <p>No jargon, no chaos. Five steps, a fixed timeline, and you always know what's next.</p>
+    </div>
+    <div class="steps reveal">
+      <!-- EDIT process steps -->
+      <div class="step"><div class="n">01</div><h3>Discovery</h3><p>A free call to understand your goals, customers, and what's holding the site back.</p></div>
+      <div class="step"><div class="n">02</div><h3>Strategy</h3><p>I map the exact trust + conversion path your visitors need to take.</p></div>
+      <div class="step"><div class="n">03</div><h3>Design</h3><p>You see the full design before a line of code — refined until you love it.</p></div>
+      <div class="step"><div class="n">04</div><h3>Build</h3><p>Fast, clean, search-ready development on your platform of choice.</p></div>
+      <div class="step"><div class="n">05</div><h3>Launch &amp; grow</h3><p>We go live, measure results, and optimise — it's a revenue tool, not a one-off.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ PAIN & SOLUTION ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Why most sites fail</span>
+      <h2>A pretty site that doesn't convert is just an expensive brochure.</h2>
+    </div>
+    <div class="ps-grid reveal">
+      <!-- EDIT pain points + solutions -->
+      <div class="ps-col pain">
+        <span class="lbl">The problem</span>
+        <h3>Where you're losing customers</h3>
+        <ul class="ps-list">
+          <li><span class="mk">✕</span> Visitors land, get confused, and leave in seconds.</li>
+          <li><span class="mk">✕</span> No clear reason to choose you over a competitor.</li>
+          <li><span class="mk">✕</span> Zero proof — no reviews, results, or real faces.</li>
+          <li><span class="mk">✕</span> A weak call-to-action buried at the bottom.</li>
+        </ul>
+      </div>
+      <div class="ps-col sol">
+        <span class="lbl">The fix</span>
+        <h3>How I rebuild it to convert</h3>
+        <ul class="ps-list">
+          <li><span class="mk">→</span> A hero that says exactly why you, in 3 seconds.</li>
+          <li><span class="mk">→</span> Trust stacked at every scroll: proof, results, faces.</li>
+          <li><span class="mk">→</span> One clear action, repeated and frictionless.</li>
+          <li><span class="mk">→</span> Built to be found — fast, clean, search-ready.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ TESTIMONIALS ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="testi-wrap reveal">
+      <div class="stars">★★★★★</div>
+      <!-- EDIT: rotating testimonials live in JS array below -->
+      <blockquote class="quote" id="quote">"The new site paid for itself in the first month. We went from <span class="accent">two enquiries a week</span> to a full calendar — without spending a cent more on ads."</blockquote>
+      <div class="testi-foot">
+        <div class="avatar" id="avatar">M</div>
+        <div class="who"><b id="who-name">Maria Bennett</b><span id="who-role">Founder · Bennett & Co</span></div>
+      </div>
+      <div class="testi-nav">
+        <button id="prev" aria-label="Previous">←</button>
+        <button id="next" aria-label="Next">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ REVIEWS + LOGOS ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Reviews</span>
+      <h2>Don't take my word for it.</h2>
+    </div>
+    <div class="rev-grid">
+      <!-- EDIT reviews -->
+      <div class="rev reveal"><div class="stars">★★★★★</div><p>"Easiest project I've ever run. Clear, fast, and the design just gets it."</p><div class="by"><b>James O.</b> — Roofing co.</div></div>
+      <div class="rev reveal"><div class="stars">★★★★★</div><p>"My bounce rate halved overnight. People actually stay and read now."</p><div class="by"><b>Priya N.</b> — Wellness studio</div></div>
+      <div class="rev reveal"><div class="stars">★★★★★</div><p>"Worth every penny. Looks like a brand 10× our size. Clients notice."</p><div class="by"><b>Dan R.</b> — Consultancy</div></div>
+    </div>
+    <!-- familiar brands -->
+    <div class="marquee reveal">
+      <div class="marquee-track">
+        <!-- EDIT: brand names you've worked with -->
+        <span>Bennett &amp; Co</span><span>Northwind</span><span>Atlas Studio</span><span>Verdant</span><span>Harbour Lane</span><span>Meridian Health</span>
+        <span>Bennett &amp; Co</span><span>Northwind</span><span>Atlas Studio</span><span>Verdant</span><span>Harbour Lane</span><span>Meridian Health</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ ABOUT / FOUNDER ============================================================ -->
+<section id="about">
+  <div class="wrap">
+    <div class="about">
+      <!-- EDIT: replace .about-photo with <img src="your-photo.jpg"> -->
+      <div class="about-photo reveal"><span class="ph">Your photo here</span></div>
+      <div class="reveal">
+        <span class="kicker">The human behind it</span>
+        <!-- EDIT: your name + story -->
+        <h2>Hi, I'm <span class="accent">[Your Name]</span>.</h2>
+        <p>I started this studio after watching too many great businesses get let down by beautiful sites that <strong>didn't sell anything</strong>. Design should do a job — and that job is trust and conversion.</p>
+        <p>So I do one thing: build sites for [your niche] that make the right people pick you. No bloated retainers, no jargon. Just clear, honest work that pays for itself.</p>
+        <div class="about-stats">
+          <div><div class="n">120+</div><div class="t">Projects</div></div>
+          <div><div class="n">5.0★</div><div class="t">Avg. rating</div></div>
+          <div><div class="n">14d</div><div class="t">To launch</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FAQ ============================================================ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div class="reveal">
+        <span class="kicker">FAQ</span>
+        <h2 style="font-size:clamp(30px,4vw,52px);margin-top:18px">Questions, answered.</h2>
+      </div>
+      <div class="faq-list reveal">
+        <!-- EDIT FAQ items -->
+        <div class="faq-item open">
+          <button class="faq-q">How much does a website cost?<span class="ic">+</span></button>
+          <div class="faq-a"><p>Most projects are a fixed price agreed up front — no hourly surprises. Book a free call and I'll give you an exact number for your scope before you commit a cent.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How long does it take?<span class="ic">+</span></button>
+          <div class="faq-a"><p>A typical site launches in around 14 days from kickoff, assuming content is ready. I'll give you a clear timeline on day one and hit it.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What if I don't like the design?<span class="ic">+</span></button>
+          <div class="faq-a"><p>You don't pay until you love it. We refine together until it's right — that's the no-risk guarantee.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Do you only work in one industry?<span class="ic">+</span></button>
+          <div class="faq-a"><p>I specialise in [your niche] because depth beats breadth — I already know what converts your customers. Reach out and we'll see if it's a fit.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What happens after launch?<span class="ic">+</span></button>
+          <div class="faq-a"><p>You own everything. I offer optional care plans for updates, hosting, and growth — but you're never locked in.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FINAL CTA ============================================================ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="cta reveal">
+      <h2>Let's build the one<br>that converts.</h2>
+      <p>Free 20-minute strategy call. No pitch, no pressure — just a clear plan for your site.</p>
+      <!-- EDIT: link to Calendly / Formspree / email -->
+      <a href="mailto:hello@studiomeridian.com" class="btn btn--light">Book your free call
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <div class="cta-risk">✓ You don't pay until you love the design.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FOOTER ============================================================ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <a href="#" class="logo">Studio<b>Meridian</b></a>
+        <p>Conversion-focused web design for [your niche]. Your website is a revenue tool.</p>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>Menu</h4>
+          <a href="#work">Work</a><a href="#process">Process</a><a href="#about">About</a><a href="#faq">FAQ</a>
+        </div>
+        <div class="foot-col">
+          <h4>Connect</h4>
+          <!-- EDIT social links -->
+          <a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Dribbble</a><a href="mailto:hello@studiomeridian.com">Email</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Studio Meridian. All rights reserved.</span>
+      <span>Designed &amp; built to convert.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---- page load reveal ---- */
+window.addEventListener('load',()=>document.body.classList.add('loaded'));
+document.body.classList.add('loaded');
+
+/* ---- sticky nav ---- */
+const hdr=document.getElementById('hdr');
+addEventListener('scroll',()=>hdr.classList.toggle('scrolled',scrollY>40));
+
+/* ---- scroll reveal ---- */
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ---- FAQ accordion ---- */
+document.querySelectorAll('.faq-q').forEach(q=>{
+  q.addEventListener('click',()=>{
+    const item=q.parentElement, a=item.querySelector('.faq-a'), open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=null});
+    if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
+  });
+});
+const firstA=document.querySelector('.faq-item.open .faq-a');
+if(firstA)firstA.style.maxHeight=firstA.scrollHeight+'px';
+
+/* ---- testimonials carousel ---- */
+/* EDIT: add / change testimonials here */
+const TESTIMONIALS=[
+  {q:'"The new site paid for itself in the first month. We went from <span class="accent">two enquiries a week</span> to a full calendar — without spending a cent more on ads."',n:'Maria Bennett',r:'Founder · Bennett & Co',i:'M'},
+  {q:'"I finally have a site I\'m proud to send people to. It actually <span class="accent">explains what we do</span> and gets them to call. Game changer."',n:'James Okafor',r:'Owner · Northwind Roofing',i:'J'},
+  {q:'"Clean, fast, and built around results. Our online bookings <span class="accent">doubled in two months.</span> Best money we\'ve spent on the business."',n:'Priya Nair',r:'Director · Verdant Studio',i:'P'},
+];
+let ti=0;
+const elQ=document.getElementById('quote'),elN=document.getElementById('who-name'),elR=document.getElementById('who-role'),elA=document.getElementById('avatar');
+function showTesti(i){
+  const t=TESTIMONIALS[(i+TESTIMONIALS.length)%TESTIMONIALS.length];
+  [elQ,elN,elR,elA].forEach(e=>e.style.opacity=0);
+  setTimeout(()=>{
+    elQ.innerHTML=t.q;elN.textContent=t.n;elR.textContent=t.r;elA.textContent=t.i;
+    [elQ,elN,elR,elA].forEach(e=>{e.style.transition='opacity .4s';e.style.opacity=1});
+  },220);
+}
+document.getElementById('next').onclick=()=>showTesti(++ti);
+document.getElementById('prev').onclick=()=>showTesti(--ti);
+setInterval(()=>showTesti(++ti),7000);
+
+/* ---- mobile menu ---- */
+document.getElementById('menuBtn').onclick=()=>location.href='#contact';
+</script>
+</body>
+</html>
