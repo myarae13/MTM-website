@@ -1,6 +1,6 @@
 # MTM Website
 
-Conversion-focused portfolio site for Studio Meridian — a single-file static website built on the AIW "Trust + Conversion" wireframe, styled after a clean navy/teal/cream B2B aesthetic.
+Conversion-focused portfolio site for **MTM Marketing** — a single-file static website built on the AIW "Trust + Conversion" wireframe. Styled to match the MTM logo: a retro, layered-offset look in navy · terracotta · cream-gold on a dusty-blue ground. Brand mark lives in `mtm-logo.svg`.
 
 ## Structure
 
