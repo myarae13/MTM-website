@@ -72,6 +72,30 @@ img{max-width:100%;display:block}
 h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.12;letter-spacing:.01em;color:var(--navy)}
 .accent{color:var(--orange)}
 
+/* ---- SIGNATURE: logo-style layered chromatic-offset type ----
+   Recreates the MTM mark — gold fill, navy stroke, terracotta + blue
+   offset shadows. Use .chroma on emphasis words on LIGHT grounds;
+   .chroma--dark drops the heavy stroke for navy/dark grounds. */
+.chroma{
+  color:var(--butter);
+  -webkit-text-stroke:1.2px var(--navy);
+  text-shadow:2px 2px 0 var(--blue-deep), 4px 4px 0 var(--orange), 5px 5px 0 var(--navy);
+  padding-right:.04em;
+}
+.chroma--dark{
+  color:var(--cream);
+  -webkit-text-stroke:0;
+  text-shadow:2px 2px 0 var(--blue-deep), 4px 4px 0 var(--orange);
+}
+
+/* ---- paper grain: subtle retro tooth over cream grounds ---- */
+body::before{
+  content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
+header,section,footer{position:relative;z-index:2}
+
 /* ---- buttons ---- */
 .btn{
   display:inline-flex;align-items:center;gap:10px;
@@ -94,10 +118,12 @@ h1,h2,h3{font-family:var(--font-display);font-weight:400;line-height:1.12;letter
    ============================================================ */
 header{
   position:fixed;top:0;left:0;right:0;z-index:100;
-  transition:background .4s var(--ease), border-color .4s var(--ease), box-shadow .4s var(--ease);
-  border-bottom:1px solid transparent;
+  background:rgba(253,249,240,.94);backdrop-filter:blur(14px) saturate(1.05);
+  border-bottom:1px solid var(--line);
+  transition:box-shadow .4s var(--ease);
 }
-header.scrolled{background:rgba(247,240,223,.88);backdrop-filter:blur(14px);border-color:var(--line)}
+/* deepen the shadow once the page scrolls */
+header.scrolled{box-shadow:0 6px 22px rgba(31,42,74,.08)}
 nav{display:flex;align-items:center;justify-content:space-between;height:78px}
 /* logo recreates the MTM stacked-offset treatment: cream-gold fill,
    navy stroke, navy + terracotta drop shadows */
@@ -108,9 +134,11 @@ nav{display:flex;align-items:center;justify-content:space-between;height:78px}
   text-shadow:1.5px 1.5px 0 var(--navy), 3px 3px 0 var(--orange);
 }
 .logo b{font-weight:400;color:var(--butter)}
+.logo-img{height:60px;width:auto;display:block;transition:transform .35s var(--ease)}
+.logo-link:hover .logo-img{transform:scale(1.04)}
 .nav-links{display:flex;gap:36px;align-items:center}
-.nav-links a{font-size:15px;font-weight:500;color:var(--muted);transition:color .3s}
-.nav-links a:hover{color:var(--navy)}
+.nav-links a{font-size:15px;font-weight:500;color:var(--ink);transition:color .3s}
+.nav-links a:hover{color:var(--orange)}
 .nav-right{display:flex;align-items:center;gap:22px}
 .nav-phone{font-size:15px;font-weight:600;color:var(--navy)}
 .nav-cta{font-size:14px;font-weight:600;background:var(--teal-cta);color:#fff;padding:11px 22px;border-radius:9px;transition:.3s var(--ease);box-shadow:0 4px 14px rgba(217,107,58,.28)}
@@ -123,7 +151,9 @@ nav{display:flex;align-items:center;justify-content:space-between;height:78px}
 /* centered dark hero — More Floors layout, MTM palette */
 .hero{padding:150px 0 96px;background:var(--navy);text-align:center;position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;top:-28%;left:50%;transform:translateX(-50%);width:780px;height:780px;background:radial-gradient(circle,rgba(217,107,58,.18),transparent 70%);pointer-events:none}
-.hero .wrap{max-width:980px;position:relative}
+.hero .wrap{max-width:var(--maxw);position:relative}
+/* keep the centered hero copy from sprawling on the wider frame */
+.hero h1,.hero .hero-sub{max-width:860px;margin-left:auto;margin-right:auto}
 .hero .kicker{color:var(--cream)}
 .hero .kicker::before{background:var(--cream)}
 .hero h1{font-size:clamp(40px,5.8vw,80px);line-height:1.2;letter-spacing:.01em;color:#fff;margin-top:18px}
@@ -175,7 +205,8 @@ section{padding:110px 0}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:38px 34px;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s}
 .card:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(10,22,40,.09);border-color:#d8d2c8}
-.card .ic{width:52px;height:52px;border-radius:12px;background:var(--paper-2);display:flex;align-items:center;justify-content:center;margin-bottom:22px;font-size:24px}
+.card .ic{width:54px;height:54px;border-radius:12px;background:var(--paper-2);color:var(--teal-cta);display:flex;align-items:center;justify-content:center;margin-bottom:22px;border:1px solid var(--line)}
+.card .ic svg{width:26px;height:26px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .card h3{font-size:23px;margin-bottom:12px}
 .card p{color:var(--muted);font-size:15.5px}
 
@@ -280,8 +311,10 @@ section{padding:110px 0}
    ABOUT / FOUNDER QUOTE
    ============================================================ */
 .about{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:center}
-.about-photo{aspect-ratio:4/5;border-radius:18px;border:1px solid var(--line);background:linear-gradient(160deg,#28324f,#1f2a4a);display:flex;align-items:center;justify-content:center;box-shadow:0 24px 60px rgba(31,42,74,.16)}
-.about-photo .ph{font-size:13px;font-weight:600;color:rgba(255,255,255,.6);border:1px dashed rgba(255,255,255,.35);padding:10px 16px;border-radius:8px}
+.about-photo{position:relative;aspect-ratio:4/5;border-radius:18px;background:var(--navy);overflow:hidden;box-shadow:0 24px 60px rgba(31,42,74,.16);border:3px solid var(--navy)}
+.about-photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
+/* signature offset frame behind the photo */
+.about-photo::after{content:"";position:absolute;inset:-3px;border-radius:18px;box-shadow:12px 12px 0 var(--butter), 12px 12px 0 3px var(--navy);z-index:-1;pointer-events:none}
 .about h2{font-size:clamp(30px,3.8vw,48px);margin:18px 0 24px}
 .about p{color:var(--muted);font-size:17px;margin-bottom:18px;max-width:560px}
 .about p strong{color:var(--navy);font-weight:600}
@@ -379,7 +412,7 @@ footer{padding:70px 0 50px}
    inline-block + its own line-height keeps the box tight to the glyph so it
    never bleeds into the line above/below; roomy heading line-height (below)
    gives it breathing space. */
-.hl{display:inline-block;line-height:1;background:var(--orange);color:var(--cream);padding:.04em .24em .1em;border-radius:8px;vertical-align:baseline}
+.hl{display:inline-block;line-height:1;background:var(--orange);color:var(--cream);padding:.04em .24em .1em;border-radius:8px;vertical-align:baseline;box-shadow:3px 3px 0 var(--navy)}
 
 /* alternating section bands */
 .band-dark{background:var(--navy);color:#fff}
@@ -442,8 +475,7 @@ footer{padding:70px 0 50px}
 <header id="hdr">
   <div class="wrap">
     <nav>
-      <!-- EDIT: studio / your name -->
-      <a href="#" class="logo">MTM<b> Marketing</b></a>
+      <a href="#" class="logo-link" aria-label="MTM Marketing — home"><img class="logo-img" src="mtm-logo-t.png" alt="MTM Marketing" /></a>
       <div class="nav-links">
         <a href="#work">Work</a>
         <a href="#services">Services</a>
@@ -453,7 +485,7 @@ footer{padding:70px 0 50px}
       <div class="nav-right">
         <!-- EDIT: phone -->
         <a href="tel:+10000000000" class="nav-phone">(000) 000-0000</a>
-        <a href="#contact" class="nav-cta">Book a call</a>
+        <a href="#contact" class="nav-cta" data-book>Book a call</a>
       </div>
       <button class="menu-btn" id="menuBtn">Menu</button>
     </nav>
@@ -465,7 +497,7 @@ footer{padding:70px 0 50px}
   <div class="wrap">
     <span class="kicker fade-up d1" style="margin-bottom:22px">Web design &amp; local SEO for local business</span>
     <!-- EDIT: headline -->
-    <h1 class="fade-up d1">More calls.<br>More customers.<br>More <span class="hl">revenue.</span></h1>
+    <h1 class="fade-up d1">More calls.<br>More customers.<br>More <span class="chroma--dark">revenue.</span></h1>
     <p class="hero-sub fade-up d2">MTM Marketing builds high-performance websites and local SEO systems for local businesses — built to bring in more traffic, more calls, and more booked jobs. Not a pretty site that sits there doing nothing.</p>
     <!-- value props -->
     <div class="vprops fade-up d2">
@@ -474,7 +506,7 @@ footer{padding:70px 0 50px}
       <span class="vprop">Win more jobs</span>
     </div>
     <div class="hero-cta-row fade-up d3">
-      <a href="#contact" class="btn">Get started
+      <a href="#contact" class="btn" data-book>Get started
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <a href="#work" class="btn btn--ghost">See the work</a>
@@ -543,7 +575,7 @@ footer{padding:70px 0 50px}
     <div class="reveal">
       <h2>Ready for a site that brings in work?</h2>
       <div class="row">
-        <a href="#contact" class="btn">Get a free quote
+        <a href="#contact" class="btn" data-book>Get a free quote
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
         <!-- EDIT: phone -->
@@ -579,26 +611,26 @@ footer{padding:70px 0 50px}
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="kicker">Why MTM is different</span>
-      <h2>Built for <span class="hl">results</span>, not awards.</h2>
+      <h2>Built for <span class="chroma--dark">results</span>, not awards.</h2>
     </div>
     <div class="cards cards--4">
       <div class="card reveal">
-        <div class="ic">📍</div>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
         <h3>We build for local</h3>
         <p>That's the advantage. I know what makes a nearby customer pick up the phone — not what wins design awards.</p>
       </div>
       <div class="card reveal">
-        <div class="ic">🎯</div>
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
         <h3>Built for leads, not awards</h3>
         <p>Every section earns trust, then drives one action. No vanity design — just more booked work and measurable lift.</p>
       </div>
       <div class="card reveal">
-        <div class="ic">🔎</div>
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
         <h3>SEO from day one</h3>
         <p>Your site is structured to be found — fast, clean, and optimised for Google and your local map pack from the start.</p>
       </div>
       <div class="card reveal">
-        <div class="ic">📈</div>
+        <div class="ic"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 16.5 8.5 11.5 1 19"/><polyline points="17 6 23 6 23 12"/></svg></div>
         <h3>Real business results</h3>
         <p>I measure what matters: calls, forms, and booked jobs. A website should pay for itself — and keep paying.</p>
       </div>
@@ -644,26 +676,26 @@ footer{padding:70px 0 50px}
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="kicker">What I do</span>
-      <h2>What we do (and do <span class="hl">extremely</span> well).</h2>
+      <h2>What we do (and do <span class="chroma--dark">extremely</span> well).</h2>
     </div>
     <div class="cards cards--4">
       <div class="card reveal">
-        <div class="ic">🖥️</div>
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="8" x2="22" y2="8"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
         <h3>Custom website design</h3>
         <p>Built specifically for local businesses — designed around trust, clarity, and one clear path to contact you.</p>
       </div>
       <div class="card reveal">
-        <div class="ic">📍</div>
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
         <h3>Local SEO</h3>
         <p>Google Business Profile optimisation and on-page SEO so you show up when nearby customers search.</p>
       </div>
       <div class="card reveal">
-        <div class="ic">🔧</div>
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
         <h3>Redesigns &amp; optimisation</h3>
         <p>Fix underperforming pages and slow, dated sites — turn the traffic you already get into real leads.</p>
       </div>
       <div class="card reveal">
-        <div class="ic">⚡</div>
+        <div class="ic"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
         <h3>Google Ads &amp; lead gen</h3>
         <p>Targeted Google Ads to generate leads now — not months from now — while your SEO compounds.</p>
       </div>
@@ -675,8 +707,7 @@ footer{padding:70px 0 50px}
 <section id="about">
   <div class="wrap">
     <div class="about">
-      <!-- EDIT: replace .about-photo with <img src="your-photo.jpg"> -->
-      <div class="about-photo reveal"><span class="ph">Your photo here</span></div>
+      <div class="about-photo reveal"><img src="founder.jpg" alt="Founder, MTM Marketing" /></div>
       <div class="reveal">
         <span class="kicker">Meet the founder</span>
         <!-- EDIT: your name + story -->
@@ -774,8 +805,7 @@ footer{padding:70px 0 50px}
     <div class="cta reveal">
       <h2>More calls start<br>with a better site.</h2>
       <p>Free 20-minute strategy call. No pitch, no pressure — just a clear plan to turn your site into a lead-generating machine.</p>
-      <!-- EDIT: link to Calendly / Formspree / email -->
-      <a href="mailto:hello@mtmmarketing.com" class="btn btn--light">Start today
+      <a href="#contact" class="btn btn--light" data-book>Book your free call
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <div class="cta-risk">✓ Built to generate leads — or I keep working until it does.</div>
@@ -788,8 +818,8 @@ footer{padding:70px 0 50px}
   <div class="wrap">
     <div class="foot-top">
       <div>
-        <a href="#" class="logo">MTM<b> Marketing</b></a>
-        <p>Conversion-focused web design for local businesses. Your website is a revenue tool.</p>
+        <a href="#" class="logo-link" aria-label="MTM Marketing — home"><img class="logo-img" src="mtm-logo-t.png" alt="MTM Marketing" style="height:62px" /></a>
+        <p style="margin-top:18px">Conversion-focused web design for local businesses. Your website is a revenue tool.</p>
       </div>
       <div class="foot-cols">
         <div class="foot-col">
@@ -834,8 +864,20 @@ document.querySelectorAll('.faq-q').forEach(q=>{
 const firstA=document.querySelector('.faq-item.open .faq-a');
 if(firstA)firstA.style.maxHeight=firstA.scrollHeight+'px';
 
+/* ============================================================
+   BOOKING — set this ONE value to your Calendly link.
+   Every "Book a call / Get started / Book your free call" button
+   uses it. Until it's a real URL, buttons scroll to the CTA section.
+   ============================================================ */
+const BOOKING_URL = "https://calendly.com/YOUR-HANDLE/intro";  /* EDIT: paste your Calendly link */
+const bookReady = /^https?:\/\//.test(BOOKING_URL) && !BOOKING_URL.includes("YOUR-HANDLE");
+document.querySelectorAll('[data-book]').forEach(el=>{
+  if(bookReady){ el.setAttribute('href',BOOKING_URL); el.setAttribute('target','_blank'); el.setAttribute('rel','noopener'); }
+  else { el.setAttribute('href','#contact'); }
+});
+
 /* ---- mobile menu ---- */
-document.getElementById('menuBtn').onclick=()=>location.href='#contact';
+document.getElementById('menuBtn').onclick=()=> bookReady ? window.open(BOOKING_URL,'_blank','noopener') : location.href='#contact';
 </script>
 </body>
 </html>
