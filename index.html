@@ -6,8 +6,8 @@
 <!-- ============================================================
      EDIT: Page title + meta description (SEO)
      ============================================================ -->
-<title>MTM Marketing — Websites that bring in leads for local business</title>
-<meta name="description" content="Conversion-focused web design for local businesses. Your website is a revenue tool, not a one-and-done project." />
+<title>MTM Marketing — Done-for-you Google lead generation for local trades</title>
+<meta name="description" content="We get local trade &amp; home-service businesses more calls from Google — Business Profile, Google Ads, and a site built to convert. More qualified leads in 90 days, or you don't pay." />
 
 <link rel="icon" type="image/svg+xml" href="mtm-logo.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -448,18 +448,142 @@ footer{padding:70px 0 50px}
 .vcom .vp{font-size:13.5px;color:var(--muted);margin-top:8px}
 
 /* ============================================================
+   NUMBERED PROBLEM BLOCKS  (P&P-style 01·02·03 pain framing)
+   Big chroma numbers reuse the MTM logo treatment.
+   ============================================================ */
+.problems{background:var(--paper-2)}
+.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.prob{background:#fff;border:1px solid var(--line);border-radius:16px;padding:40px 34px 34px;position:relative;transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .4s}
+.prob:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(10,22,40,.09);border-color:#d8d2c8}
+.prob .num{
+  display:block;font-family:var(--font-display);font-size:58px;line-height:1;margin-bottom:22px;
+  color:var(--butter);-webkit-text-stroke:1.4px var(--navy);
+  text-shadow:3px 3px 0 var(--orange);
+}
+.prob h3{font-size:22px;margin-bottom:12px}
+.prob p{color:var(--muted);font-size:15.5px}
+.prob .cost{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:13.5px;font-weight:600;color:#d13b2a}
+.prob .cost::before{content:"↓";font-weight:700}
+
+/* ============================================================
+   PRICING  (tiered cards + guarantee framing)
+   ============================================================ */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:stretch}
+.price{background:#fff;border:1px solid var(--line);border-radius:18px;padding:40px 34px;display:flex;flex-direction:column;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.price:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(10,22,40,.10)}
+.price.featured{background:var(--navy);border-color:var(--navy);position:relative;box-shadow:0 22px 60px rgba(31,42,74,.22)}
+.price .badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--orange);color:var(--cream);font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:6px 16px;border-radius:999px;box-shadow:2px 2px 0 var(--navy)}
+.price-name{font-family:var(--font-display);font-size:23px;color:var(--navy)}
+.price-desc{font-size:14px;color:var(--muted);margin-top:8px;min-height:44px}
+.price-amt{font-family:var(--font-display);font-size:46px;color:var(--navy);line-height:1;margin:20px 0 4px}
+.price-amt small{font-family:var(--font-body);font-size:15px;font-weight:600;color:var(--muted)}
+.price-note{font-size:13px;color:var(--muted);margin-bottom:26px}
+.price-list{list-style:none;margin:0 0 30px;flex-grow:1}
+.price-list li{display:flex;gap:11px;align-items:flex-start;padding:10px 0;font-size:15px;border-top:1px solid var(--line)}
+.price-list .mk{color:var(--orange);font-weight:700;flex-shrink:0}
+.price .btn{width:100%;justify-content:center}
+/* featured (navy) card — flip type + hairlines to light */
+.price.featured .price-name,.price.featured .price-amt{color:#fff}
+.price.featured .price-desc{color:rgba(255,255,255,.72)}
+.price.featured .price-amt small,.price.featured .price-note{color:rgba(255,255,255,.62)}
+.price.featured .price-list li{border-color:rgba(255,255,255,.14);color:rgba(255,255,255,.9)}
+.price.featured .price-list .mk{color:var(--cream)}
+.price.featured .btn--ghost{color:#fff;border-color:rgba(255,255,255,.34)}
+.price.featured .btn--ghost:hover{background:#fff;color:var(--navy);border-color:#fff}
+/* reassurance line under the pricing grid */
+.price-reassure{text-align:center;margin-top:40px;font-size:15.5px;color:var(--muted)}
+.price-reassure b{color:var(--navy)}
+.price-reassure .mk{color:var(--orange);font-weight:700}
+
+/* ============================================================
+   HERO GUARANTEE RIBBON
+   ============================================================ */
+.hero-ribbon{display:inline-flex;align-items:center;gap:9px;margin-top:26px;background:rgba(217,107,58,.16);border:1px solid rgba(217,107,58,.5);color:var(--cream);font-weight:600;font-size:14.5px;padding:11px 20px;border-radius:999px}
+.hero-ribbon .mk{color:var(--orange);font-weight:800}
+
+/* ============================================================
+   SOCIAL PROOF BAR
+   ============================================================ */
+.proofbar{background:var(--slate);color:#fff;padding:34px 0}
+.proofbar .row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center}
+.pb .n{font-family:var(--font-display);font-size:clamp(26px,3vw,40px);color:var(--cream);line-height:1}
+.pb .n small{font-family:var(--font-body);font-size:15px;font-weight:600;color:rgba(255,255,255,.6)}
+.pb .l{font-size:13.5px;color:rgba(255,255,255,.72);margin-top:9px}
+
+/* ============================================================
+   TWO-CHANNEL SOLUTION
+   ============================================================ */
+.channels{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.channel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:40px 36px;transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.channel:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(10,22,40,.10)}
+.channel .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:18px}
+.channel.free .tag{background:var(--paper-2);color:var(--navy);border:1px solid var(--line)}
+.channel.paid .tag{background:var(--orange);color:var(--cream);box-shadow:2px 2px 0 var(--navy)}
+.channel h3{font-size:26px;margin-bottom:8px}
+.channel .sub{color:var(--muted);font-size:15px;margin-bottom:20px}
+.chan-list{list-style:none;margin:0 0 24px}
+.chan-list li{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-top:1px solid var(--line);font-size:15.5px}
+.chan-list .mk{color:var(--orange);font-weight:700;flex-shrink:0}
+.channel .bigstat{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:15px 18px;display:flex;align-items:baseline;gap:11px}
+.channel .bigstat .n{font-family:var(--font-display);font-size:29px;color:var(--navy);line-height:1}
+.channel .bigstat .t{font-size:13.5px;color:var(--muted)}
+
+/* ============================================================
+   LIVE RESULTS DASHBOARD
+   ============================================================ */
+.dash{background:var(--slate);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:30px;box-shadow:0 30px 70px rgba(10,22,40,.30);max-width:960px;margin:0 auto}
+.dash-head{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-bottom:22px;border-bottom:1px solid rgba(255,255,255,.12)}
+.dash-head .t{font-weight:600;color:#fff;font-size:15.5px}
+.dash-head .rng{font-size:13px;color:rgba(255,255,255,.6);margin-top:3px}
+.live-pill{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.06em;color:#9be6b4;background:rgba(72,187,120,.14);border:1px solid rgba(72,187,120,.4);padding:6px 13px;border-radius:999px}
+.live-pill .dot{width:8px;height:8px;border-radius:50%;background:#48bb78;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(72,187,120,.5)}70%{box-shadow:0 0 0 8px rgba(72,187,120,0)}100%{box-shadow:0 0 0 0 rgba(72,187,120,0)}}
+.dash-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px 0}
+.dtile{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px}
+.dtile .n{font-family:var(--font-display);font-size:34px;color:#fff;line-height:1}
+.dtile .l{font-size:12.5px;color:rgba(255,255,255,.6);margin-top:9px}
+.dtile .up{font-size:12px;color:#9be6b4;font-weight:600;margin-top:9px}
+.dash-bars{display:flex;align-items:flex-end;gap:9px;height:120px;padding-top:10px}
+.dash-bars .bar{flex:1;background:linear-gradient(180deg,var(--orange),rgba(217,107,58,.35));border-radius:6px 6px 0 0}
+.dash-note{font-size:12.5px;color:rgba(255,255,255,.5);margin-top:18px;text-align:center}
+
+/* ============================================================
+   QUALIFICATION (for you / not for you)
+   ============================================================ */
+.qual{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.qcol{border-radius:18px;padding:38px 34px;border:1px solid var(--line)}
+.qcol.yes{background:#fff}
+.qcol.no{background:var(--paper-2)}
+.qh{display:flex;align-items:center;gap:12px;font-family:var(--font-display);font-size:22px;color:var(--navy);margin-bottom:14px}
+.qbadge{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0}
+.qcol.yes .qbadge{background:rgba(47,143,78,.14);color:#2f8f4e}
+.qcol.no .qbadge{background:rgba(209,59,42,.12);color:#d13b2a}
+.qlist{list-style:none}
+.qlist li{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line);font-size:15.5px;color:var(--ink)}
+.qcol.yes .qlist .mk{color:#2f8f4e;font-weight:700;flex-shrink:0}
+.qcol.no .qlist .mk{color:#d13b2a;font-weight:700;flex-shrink:0}
+
+/* per-area exclusivity badge */
+.area-badge{display:inline-flex;align-items:center;gap:8px;background:var(--paper-2);border:1px solid var(--line);color:var(--navy);font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px}
+.area-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--orange)}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media(max-width:980px){
   .steps{grid-template-columns:repeat(2,1fr)}
   .step{border-left:none;border-top:1px solid rgba(255,255,255,.1)}
   .stats-grid,.vlist{grid-template-columns:repeat(2,1fr)}
+  .dash-tiles{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:880px){
   .nav-links,.nav-phone{display:none}
   .menu-btn{display:block}
   .hero-grid{grid-template-columns:1fr;gap:48px}
-  .cards,.work-grid,.ps-grid,.about,.faq-grid,.rev-grid,.steps,.cards--4,.audience,.gua-list,.trust2,.vlist{grid-template-columns:1fr}
+  .cards,.work-grid,.ps-grid,.about,.faq-grid,.rev-grid,.steps,.cards--4,.audience,.gua-list,.trust2,.vlist,.prob-grid,.price-grid,.channels,.qual{grid-template-columns:1fr}
+  .proofbar .row{grid-template-columns:1fr;gap:28px}
+  .dash-tiles{grid-template-columns:repeat(2,1fr)}
+  .dash{padding:22px}
   .shotstack{grid-template-columns:1fr 1fr}
   .shot:nth-child(1),.shot:nth-child(4){margin-top:0}
   .step{border-top:1px solid rgba(255,255,255,.1)}
@@ -477,15 +601,16 @@ footer{padding:70px 0 50px}
     <nav>
       <a href="#" class="logo-link" aria-label="MTM Marketing — home"><img class="logo-img" src="mtm-logo-t.png" alt="MTM Marketing" /></a>
       <div class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#results">Results</a>
         <a href="#work">Work</a>
-        <a href="#services">Services</a>
-        <a href="#about">Founder</a>
+        <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
       </div>
       <div class="nav-right">
         <!-- EDIT: phone -->
         <a href="tel:+10000000000" class="nav-phone">(000) 000-0000</a>
-        <a href="#contact" class="nav-cta" data-book>Book a call</a>
+        <a href="#contact" class="nav-cta" data-book>Book discovery call</a>
       </div>
       <button class="menu-btn" id="menuBtn">Menu</button>
     </nav>
@@ -495,231 +620,167 @@ footer{padding:70px 0 50px}
 <!-- ============================================================ HERO ============================================================ -->
 <section class="hero">
   <div class="wrap">
-    <span class="kicker fade-up d1" style="margin-bottom:22px">Web design &amp; local SEO for local business</span>
+    <span class="kicker fade-up d1" style="margin-bottom:22px">Done-for-you Google lead generation for local trades</span>
     <!-- EDIT: headline -->
-    <h1 class="fade-up d1">More calls.<br>More customers.<br>More <span class="chroma--dark">revenue.</span></h1>
-    <p class="hero-sub fade-up d2">MTM Marketing builds high-performance websites and local SEO systems for local businesses — built to bring in more traffic, more calls, and more booked jobs. Not a pretty site that sits there doing nothing.</p>
+    <h1 class="fade-up d1">If you're not on Google,<br>you're handing jobs to<br>the <span class="chroma--dark">competition.</span></h1>
+    <p class="hero-sub fade-up d2">MTM builds and runs your entire Google lead engine — Business Profile, Google Ads, and a site built to convert — so your phone rings with ready-to-buy local customers. You run the jobs. We run the leads.</p>
     <!-- value props -->
     <div class="vprops fade-up d2">
-      <span class="vprop">More local traffic</span>
-      <span class="vprop">Get more calls</span>
-      <span class="vprop">Win more jobs</span>
+      <span class="vprop">Google Business Profile</span>
+      <span class="vprop">Google &amp; Local Services Ads</span>
+      <span class="vprop">A site that converts</span>
     </div>
     <div class="hero-cta-row fade-up d3">
-      <a href="#contact" class="btn" data-book>Get started
+      <a href="#contact" class="btn" data-book>Book your 15-min discovery call
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <a href="#work" class="btn btn--ghost">See the work</a>
+      <a href="#results" class="btn btn--ghost">See real results</a>
     </div>
-    <!-- EDIT: Google rating — set to your real review count -->
-    <div class="trust-row fade-up d3">
-      <div class="grating">
-        <span class="g">5.0</span>
-        <div>
-          <div class="gstars">★★★★★</div>
-          <div class="gtext">Rated <b>5.0</b> on Google · based on <b>5+ reviews</b></div>
-        </div>
-      </div>
+    <div class="hero-ribbon fade-up d3"><span class="mk">✓</span> More qualified calls in 90 days — or you don't pay.</div>
+  </div>
+</section>
+
+<!-- ============================================================ SOCIAL PROOF BAR ============================================================ -->
+<section class="proofbar" style="padding-top:34px;padding-bottom:34px">
+  <div class="wrap">
+    <!-- EDIT: swap in your real numbers -->
+    <div class="row reveal">
+      <div class="pb"><div class="n">120<small>+</small></div><div class="l">Avg. inbound calls / month our clients get from Google</div></div>
+      <div class="pb"><div class="n">5.0<small>★</small></div><div class="l">Rated 5.0 across client reviews</div></div>
+      <div class="pb"><div class="n">1</div><div class="l">Client per service area — your competitors can't hire us</div></div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================ PORTFOLIO ============================================================ -->
+<!-- ============================================================ THE PROBLEM (numbered 01·02·03) ============================================================ -->
+<section class="problems">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker" style="justify-content:center">Sound familiar?</span>
+      <h2>Why good trades stay <span class="hl">invisible</span> online.</h2>
+      <p>If your phone only rings from word-of-mouth, it's usually one of these three leaks — and each one quietly hands jobs to the contractor down the road.</p>
+    </div>
+    <div class="prob-grid">
+      <article class="prob reveal">
+        <span class="num">01</span>
+        <h3>You live on referrals alone</h3>
+        <p>Word-of-mouth built the business — but it can't scale it. When referrals slow down, the calendar goes quiet, and every month starts back at zero.</p>
+        <span class="cost">Unpredictable, feast-or-famine months</span>
+      </article>
+      <article class="prob reveal">
+        <span class="num">02</span>
+        <h3>You're buying garbage leads</h3>
+        <p>Angi, Thumbtack and HomeAdvisor sell the same lead to five contractors. You pay to fight over tyre-kickers and race competitors to the bottom on price.</p>
+        <span class="cost">Money wasted on shared, low-intent leads</span>
+      </article>
+      <article class="prob reveal">
+        <span class="num">03</span>
+        <h3>Competitors own Google — you don't</h3>
+        <p>When a nearby customer searches for what you do, someone else shows up first in the map pack. They get the call — even when your work is better.</p>
+        <span class="cost">Ready-to-buy jobs going to rivals weekly</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ SOLUTION (two channels) ============================================================ -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker" style="justify-content:center">How it works</span>
+      <h2>Two channels. One phone that <span class="hl">won't stop</span> ringing.</h2>
+      <p>We dominate the two places ready-to-buy customers actually look — the Google map pack and Google's paid results — and point both at a site built to turn clicks into calls.</p>
+    </div>
+    <div class="channels">
+      <div class="channel free reveal">
+        <span class="tag">Channel 1 · Free leads</span>
+        <h3>Google Business Profile</h3>
+        <p class="sub">The map pack that shows up before anyone scrolls. Organic calls, zero cost per lead.</p>
+        <ul class="chan-list">
+          <li><span class="mk">✓</span> Rank in the local 3-pack, where ~44% of clicks land</li>
+          <li><span class="mk">✓</span> $0 per lead — organic calls, not paid clicks</li>
+          <li><span class="mk">✓</span> 4× faster review growth to build instant trust</li>
+          <li><span class="mk">✓</span> Optimised to lock nearby competitors out of your area</li>
+        </ul>
+        <div class="bigstat"><span class="n">78+</span><span class="t">profile calls / month (client average)</span></div>
+      </div>
+      <div class="channel paid reveal">
+        <span class="tag">Channel 2 · Paid leads</span>
+        <h3>Google &amp; Local Services Ads</h3>
+        <p class="sub">Top-of-page the day we launch — with the Google Guaranteed badge and pay-per-call pricing.</p>
+        <ul class="chan-list">
+          <li><span class="mk">✓</span> Google Guaranteed badge = ~3× higher click-through</li>
+          <li><span class="mk">✓</span> Show up at the top from day one — leads now, not months out</li>
+          <li><span class="mk">✓</span> On LSA, you only pay per qualified call</li>
+          <li><span class="mk">✓</span> Top-3 placement captures ~81% of all paid calls</li>
+        </ul>
+        <div class="bigstat"><span class="n">Day 1</span><span class="t">leads start flowing, while SEO compounds</span></div>
+      </div>
+    </div>
+    <p class="price-reassure reveal" style="margin-top:34px"><span class="mk">→</span> And every click lands on a <b>site we build to convert</b> — so the traffic we send actually turns into booked jobs.</p>
+  </div>
+</section>
+
+<!-- ============================================================ LIVE RESULTS DASHBOARD ============================================================ -->
+<section id="results" class="band-dark">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker" style="justify-content:center">Real results</span>
+      <h2>Real calls. Real clients. <span class="chroma--dark">Tracked.</span></h2>
+      <p>We measure every call, form and lead — so you always know exactly what your investment is bringing back.</p>
+    </div>
+    <div class="dash reveal">
+      <div class="dash-head">
+        <div>
+          <div class="t">Client lead activity</div>
+          <!-- EDIT: date range -->
+          <div class="rng">Jun 15 – Jul 15, 2026 · sample of 10 clients</div>
+        </div>
+        <span class="live-pill"><span class="dot"></span> LIVE</span>
+      </div>
+      <!-- EDIT: replace with your real numbers before publishing -->
+      <div class="dash-tiles">
+        <div class="dtile"><div class="n">1,204</div><div class="l">Total interactions</div><div class="up">↑ 32% MoM</div></div>
+        <div class="dtile"><div class="n">786</div><div class="l">Google Profile calls</div><div class="up">↑ 21% MoM</div></div>
+        <div class="dtile"><div class="n">318</div><div class="l">Website calls &amp; forms</div><div class="up">↑ 44% MoM</div></div>
+        <div class="dtile"><div class="n">241</div><div class="l">Ads &amp; LSA calls</div><div class="up">↑ 18% MoM</div></div>
+      </div>
+      <div class="dash-bars"><div class="bar" style="height:34%"></div><div class="bar" style="height:41%"></div><div class="bar" style="height:38%"></div><div class="bar" style="height:50%"></div><div class="bar" style="height:56%"></div><div class="bar" style="height:52%"></div><div class="bar" style="height:64%"></div><div class="bar" style="height:71%"></div><div class="bar" style="height:68%"></div><div class="bar" style="height:80%"></div><div class="bar" style="height:88%"></div><div class="bar" style="height:100%"></div></div>
+      <div class="dash-note">Illustrative dashboard — connect your Google Business Profile &amp; Ads data to show live client numbers.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ PORTFOLIO (visual) ============================================================ -->
 <section id="work">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="kicker">Selected work</span>
-      <h2>Real sites. Real results.</h2>
-      <p>A look at recent builds — each designed around outcomes, not decoration. Swap these placeholders for your screenshots.</p>
+      <span class="kicker" style="justify-content:center">Selected work</span>
+      <h2>The sites behind <span class="hl">the calls</span>.</h2>
+      <p>Every lead engine runs on a site built to convert. A few recent builds — swap these placeholders for your screenshots.</p>
     </div>
-
     <div class="work-grid">
       <!-- EDIT each card: replace .thumb with <img>, update h3/tag/result -->
       <article class="work reveal">
         <div class="thumb"><span class="ph">Drop screenshot here</span><div class="view"><span>View project →</span></div></div>
-        <div class="info"><h3>Project One</h3><span class="tag">Brand · Web</span></div>
+        <div class="info"><h3>Project One</h3><span class="tag">Flooring</span></div>
         <div class="result">180% more enquiries in 90 days</div>
       </article>
       <article class="work reveal">
         <div class="thumb"><span class="ph">Drop screenshot here</span><div class="view"><span>View project →</span></div></div>
-        <div class="info"><h3>Project Two</h3><span class="tag">E-commerce</span></div>
-        <div class="result">2.4× checkout conversion</div>
+        <div class="info"><h3>Project Two</h3><span class="tag">Remodeling</span></div>
+        <div class="result">2.4× more booked estimates</div>
       </article>
       <article class="work reveal">
         <div class="thumb"><span class="ph">Drop screenshot here</span><div class="view"><span>View project →</span></div></div>
-        <div class="info"><h3>Project Three</h3><span class="tag">Local service</span></div>
+        <div class="info"><h3>Project Three</h3><span class="tag">Roofing</span></div>
         <div class="result">Fully booked in 6 weeks</div>
       </article>
       <article class="work reveal">
         <div class="thumb"><span class="ph">Drop screenshot here</span><div class="view"><span>View project →</span></div></div>
-        <div class="info"><h3>Project Four</h3><span class="tag">SaaS · Landing</span></div>
-        <div class="result">3.1% sign-up rate</div>
+        <div class="info"><h3>Project Four</h3><span class="tag">Landscaping</span></div>
+        <div class="result">3.1% call-to-lead rate</div>
       </article>
-      <article class="work reveal">
-        <div class="thumb"><span class="ph">Drop screenshot here</span><div class="view"><span>View project →</span></div></div>
-        <div class="info"><h3>Project Five</h3><span class="tag">Hospitality</span></div>
-        <div class="result">60% more direct bookings</div>
-      </article>
-      <article class="work reveal">
-        <div class="thumb"><span class="ph">Drop screenshot here</span><div class="view"><span>View project →</span></div></div>
-        <div class="info"><h3>Project Six</h3><span class="tag">Portfolio</span></div>
-        <div class="result">Landed 3 dream clients</div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ PHONE CTA STRIP ============================================================ -->
-<section class="phonestrip">
-  <div class="wrap">
-    <div class="reveal">
-      <h2>Ready for a site that brings in work?</h2>
-      <div class="row">
-        <a href="#contact" class="btn" data-book>Get a free quote
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <!-- EDIT: phone -->
-        <a href="tel:+10000000000" class="phone">(000) 000-0000</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ TRUST (two-column) ============================================================ -->
-<section>
-  <div class="wrap">
-    <div class="trust2 reveal">
-      <div class="copy">
-        <span class="kicker">Websites local customers trust</span>
-        <h2>We build websites <span class="hl">local customers trust</span>.</h2>
-        <p>Most local business websites look fine and do nothing. We don't build pretty sites that sit there — we build a lead-generating machine, structured to earn trust fast, rank in your area, and turn visitors into calls and booked jobs.</p>
-        <p>Measured, not guessed. Every page has one job: get the right customer to contact you.</p>
-      </div>
-      <!-- EDIT: replace each .shot with a real screenshot <img> -->
-      <div class="shotstack">
-        <div class="shot"><span class="ph">Screenshot</span></div>
-        <div class="shot"><span class="ph">Screenshot</span></div>
-        <div class="shot"><span class="ph">Screenshot</span></div>
-        <div class="shot"><span class="ph">Screenshot</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ WHY WE'RE DIFFERENT ============================================================ -->
-<section class="band-dark">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">Why MTM is different</span>
-      <h2>Built for <span class="chroma--dark">results</span>, not awards.</h2>
-    </div>
-    <div class="cards cards--4">
-      <div class="card reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-        <h3>We build for local</h3>
-        <p>That's the advantage. I know what makes a nearby customer pick up the phone — not what wins design awards.</p>
-      </div>
-      <div class="card reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
-        <h3>Built for leads, not awards</h3>
-        <p>Every section earns trust, then drives one action. No vanity design — just more booked work and measurable lift.</p>
-      </div>
-      <div class="card reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-        <h3>SEO from day one</h3>
-        <p>Your site is structured to be found — fast, clean, and optimised for Google and your local map pack from the start.</p>
-      </div>
-      <div class="card reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 16.5 8.5 11.5 1 19"/><polyline points="17 6 23 6 23 12"/></svg></div>
-        <h3>Real business results</h3>
-        <p>I measure what matters: calls, forms, and booked jobs. A website should pay for itself — and keep paying.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ PROVEN RESULTS / STATS ============================================================ -->
-<section class="stats">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">Proven results</span>
-      <h2><span class="hl">Results</span> you can measure.</h2>
-    </div>
-    <!-- EDIT: replace with your real numbers -->
-    <div class="stats-grid reveal">
-      <div class="stat"><div class="n">25+</div><div class="l">Websites designed &amp; delivered</div></div>
-      <div class="stat"><div class="n">$1M+</div><div class="l">In client revenue generated</div></div>
-      <div class="stat"><div class="n">Page 1</div><div class="l">Rankings in competitive local markets</div></div>
-      <div class="stat"><div class="n">5.0★</div><div class="l">Average client rating</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ WHO WE WORK WITH ============================================================ -->
-<section>
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">Who works with MTM</span>
-      <h2>Who <span class="hl">works with</span> MTM.</h2>
-    </div>
-    <div class="audience reveal">
-      <div class="aud"><span class="mk">→</span><span><b>Established local service businesses</b> that need a site working as hard as they do.</span></div>
-      <div class="aud"><span class="mk">→</span><span><b>Growing local brands</b> ready to look the part and out-rank their competitors.</span></div>
-      <div class="aud"><span class="mk">→</span><span><b>Multi-service home &amp; trade businesses</b> juggling more than one offer.</span></div>
-      <div class="aud"><span class="mk">→</span><span><b>Local leaders</b> who want to dominate their service area online.</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ SERVICES ============================================================ -->
-<section id="services" class="band-dark">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">What I do</span>
-      <h2>What we do (and do <span class="chroma--dark">extremely</span> well).</h2>
-    </div>
-    <div class="cards cards--4">
-      <div class="card reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="8" x2="22" y2="8"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-        <h3>Custom website design</h3>
-        <p>Built specifically for local businesses — designed around trust, clarity, and one clear path to contact you.</p>
-      </div>
-      <div class="card reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-        <h3>Local SEO</h3>
-        <p>Google Business Profile optimisation and on-page SEO so you show up when nearby customers search.</p>
-      </div>
-      <div class="card reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
-        <h3>Redesigns &amp; optimisation</h3>
-        <p>Fix underperforming pages and slow, dated sites — turn the traffic you already get into real leads.</p>
-      </div>
-      <div class="card reveal">
-        <div class="ic"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <h3>Google Ads &amp; lead gen</h3>
-        <p>Targeted Google Ads to generate leads now — not months from now — while your SEO compounds.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ ABOUT / FOUNDER ============================================================ -->
-<section id="about">
-  <div class="wrap">
-    <div class="about">
-      <div class="about-photo reveal"><img src="founder.jpg" alt="Founder, MTM Marketing" /></div>
-      <div class="reveal">
-        <span class="kicker">Meet the founder</span>
-        <!-- EDIT: your name + story -->
-        <h2>Hi, I'm <span class="accent">[Your Name]</span>.</h2>
-        <p>I started MTM Marketing after watching too many great local businesses get let down by beautiful sites that <strong>didn't bring in a single call</strong>. I've spent years working with local and home-service owners to understand one thing: what actually drives calls, leads, and booked jobs.</p>
-        <p>So I do one thing: build sites for local businesses that make the right people pick you. No bloated retainers, no jargon. Just clear, honest work that pays for itself.</p>
-        <div class="about-stats">
-          <div><div class="n">25+</div><div class="t">Projects</div></div>
-          <div><div class="n">5.0★</div><div class="t">Avg. rating</div></div>
-          <div><div class="n">4–5wk</div><div class="t">To launch</div></div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -730,32 +791,108 @@ footer{padding:70px 0 50px}
     <div class="guarantee reveal">
       <div class="inner">
         <span class="kicker">Our guarantee</span>
-        <h2>And yes — I put it in writing.</h2>
-        <p>If I don't build you a website that clearly communicates your value, is technically optimised for SEO, and is structured to generate leads — I keep working until it does. That's the deal.</p>
+        <h2>More calls in 90 days — or you don't pay.</h2>
+        <p>If we don't get you more qualified inbound calls than you're getting today within 90 days, you don't pay for that period — and you keep everything we built. All the risk sits with us, not you.</p>
         <ul class="gua-list">
-          <li><span class="mk">✓</span> A fully customised website — never a template</li>
-          <li><span class="mk">✓</span> An SEO-ready structure from day one</li>
-          <li><span class="mk">✓</span> Messaging built around your local customers</li>
-          <li><span class="mk">✓</span> Clear conversion paths to call &amp; book</li>
+          <li><span class="mk">✓</span> A clear baseline agreed before we start</li>
+          <li><span class="mk">✓</span> Every call &amp; lead tracked and reported</li>
+          <li><span class="mk">✓</span> Month-to-month — cancel any time, no lock-in</li>
+          <li><span class="mk">✓</span> One client per service area, always</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================================================ VISION & COMMITMENT ============================================================ -->
-<section class="vision">
+<!-- ============================================================ PRICING ============================================================ -->
+<section id="pricing">
   <div class="wrap">
-    <div class="sec-head reveal" style="margin-bottom:0">
-      <span class="kicker" style="justify-content:center">Our vision</span>
-      <h2>Help local businesses <span class="hl">dominate</span> their market online.</h2>
-      <p>That's the whole point. Here's what you can count on from me on every project.</p>
+    <div class="sec-head reveal">
+      <span class="kicker" style="justify-content:center">Simple, honest pricing</span>
+      <h2>Pick your <span class="hl">lead engine</span>.</h2>
+      <p>Flat monthly pricing, agreed up front. Month-to-month — no contracts, no lock-in, no surprises.</p>
+      <div style="margin-top:20px"><span class="area-badge"><span class="dot"></span> Month-to-month · one client per service area</span></div>
     </div>
-    <div class="vlist reveal">
-      <div class="vcom"><div class="vt">Honest strategy</div><div class="vp">Straight advice on what will actually move the needle — and what won't.</div></div>
-      <div class="vcom"><div class="vt">Clean execution</div><div class="vp">Fast, modern, search-ready builds with nothing buried in fine print.</div></div>
-      <div class="vcom"><div class="vt">Long-term thinking</div><div class="vp">A site built to keep generating leads, not just look good on launch day.</div></div>
-      <div class="vcom"><div class="vt">Real accountability</div><div class="vp">I measure results and own them. If it's not working, I keep going.</div></div>
+
+    <!-- EDIT: set your real prices + what's included in each tier -->
+    <div class="price-grid reveal">
+      <div class="price">
+        <div class="price-name">Launch</div>
+        <div class="price-desc">Get found on Google's map pack and start turning searches into calls.</div>
+        <div class="price-amt">$750<small>/mo</small></div>
+        <div class="price-note">Best for getting the engine started.</div>
+        <ul class="price-list">
+          <li><span class="mk">✓</span> Google Business Profile optimisation &amp; management</li>
+          <li><span class="mk">✓</span> Local SEO to climb the map pack</li>
+          <li><span class="mk">✓</span> Call &amp; lead tracking dashboard</li>
+          <li><span class="mk">✓</span> Monthly reporting</li>
+        </ul>
+        <a href="#contact" class="btn btn--ghost" data-book>Get started</a>
+      </div>
+
+      <div class="price featured">
+        <span class="badge">Most popular</span>
+        <div class="price-name">Growth</div>
+        <div class="price-desc">Both channels running — organic + paid — pointed at a site that converts.</div>
+        <div class="price-amt">$1,500<small>/mo</small></div>
+        <div class="price-note">Best for filling the calendar, fast.</div>
+        <ul class="price-list">
+          <li><span class="mk">✓</span> Everything in Launch</li>
+          <li><span class="mk">✓</span> Google Ads + Local Services Ads managed</li>
+          <li><span class="mk">✓</span> Conversion-built website included</li>
+          <li><span class="mk">✓</span> Backed by the 90-day guarantee</li>
+        </ul>
+        <a href="#contact" class="btn btn--light" data-book>Book a call
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="price">
+        <div class="price-name">Domination</div>
+        <div class="price-desc">Own your service area — the full done-for-you lead engine, managed end to end.</div>
+        <div class="price-amt">Custom<small></small></div>
+        <div class="price-note">Best for market leaders who want it all.</div>
+        <ul class="price-list">
+          <li><span class="mk">✓</span> Everything in Growth</li>
+          <li><span class="mk">✓</span> Larger managed ad budget &amp; multi-service targeting</li>
+          <li><span class="mk">✓</span> Multi-location / multi-crew structure</li>
+          <li><span class="mk">✓</span> Priority support &amp; strategy calls</li>
+        </ul>
+        <a href="#contact" class="btn btn--ghost" data-book>Talk to me</a>
+      </div>
+    </div>
+
+    <p class="price-reassure reveal"><span class="mk">✓</span> Every plan is backed by the guarantee — <b>more calls in 90 days, or you don't pay.</b></p>
+  </div>
+</section>
+
+<!-- ============================================================ NOT FOR EVERYONE (qualify) ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker" style="justify-content:center">Honestly? It's not for everyone</span>
+      <h2>Is this <span class="hl">right for you</span>?</h2>
+      <p>I take one client per service area, so I'm picky about fit. Here's who this works for — and who it doesn't.</p>
+    </div>
+    <div class="qual">
+      <div class="qcol yes reveal">
+        <div class="qh"><span class="qbadge">✓</span> This is for you if…</div>
+        <ul class="qlist">
+          <li><span class="mk">✓</span> You're an established local trade doing solid revenue already</li>
+          <li><span class="mk">✓</span> You can handle more work — crews, capacity, or room to grow</li>
+          <li><span class="mk">✓</span> You (or your team) actually answer the phone</li>
+          <li><span class="mk">✓</span> You want predictable lead flow, not a one-off website</li>
+        </ul>
+      </div>
+      <div class="qcol no reveal">
+        <div class="qh"><span class="qbadge">✕</span> It's not for you if…</div>
+        <ul class="qlist">
+          <li><span class="mk">✕</span> You're brand new with no reviews or track record yet</li>
+          <li><span class="mk">✕</span> You're already fully booked and can't take more jobs</li>
+          <li><span class="mk">✕</span> You want overnight results with no investment</li>
+          <li><span class="mk">✕</span> You're not ready to commit to a few months of momentum</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -769,30 +906,29 @@ footer{padding:70px 0 50px}
         <h2 style="font-size:clamp(30px,4vw,52px);margin-top:18px"><span class="hl">Questions</span>, answered.</h2>
       </div>
       <div class="faq-list reveal">
-        <!-- EDIT FAQ items -->
         <div class="faq-item open">
-          <button class="faq-q">How much does a website cost?<span class="ic">+</span></button>
-          <div class="faq-a"><p>Most projects are a fixed price agreed up front — no hourly surprises. Book a free call and I'll give you an exact number for your scope before you commit a cent.</p></div>
+          <button class="faq-q">How much does it cost?<span class="ic">+</span></button>
+          <div class="faq-a"><p>Plans start at a flat monthly rate agreed up front — no hourly surprises. Ad spend (if you run ads) is separate and goes straight to Google. Book a discovery call and I'll recommend the right level for your area.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q">How long does it take?<span class="ic">+</span></button>
-          <div class="faq-a"><p>Most websites are designed and launched in around 4–5 weeks from kickoff, assuming content is ready. I'll give you a clear timeline on day one and hit it.</p></div>
+          <button class="faq-q">How fast will I see results?<span class="ic">+</span></button>
+          <div class="faq-a"><p>Paid channels (Google &amp; Local Services Ads) can bring calls within days of launch. Organic map-pack rankings build over the first 60–90 days — which is exactly why the guarantee is tied to 90 days.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q">Can you redesign my existing site?<span class="ic">+</span></button>
-          <div class="faq-a"><p>Absolutely. Redesigns and optimisation are a core service — I fix underperforming pages and turn the traffic you already get into real leads, often without starting from scratch.</p></div>
+          <button class="faq-q">Am I locked into a contract?<span class="ic">+</span></button>
+          <div class="faq-a"><p>No. Everything is month-to-month — cancel any time. The only reason to stay is that the phone keeps ringing.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q">Do you handle SEO and local rankings?<span class="ic">+</span></button>
-          <div class="faq-a"><p>Yes. Every build is SEO-ready from day one, including Google Business Profile optimisation, so you show up when nearby customers search for what you do.</p></div>
+          <button class="faq-q">What if it doesn't work?<span class="ic">+</span></button>
+          <div class="faq-a"><p>If we don't beat your current call volume within 90 days, you don't pay for that period and you keep everything we built. The risk is on me, not you.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q">What about hosting and support after launch?<span class="ic">+</span></button>
-          <div class="faq-a"><p>You own everything. I offer optional care plans for hosting, updates, and ongoing growth — but you're never locked in.</p></div>
+          <button class="faq-q">Do I need a new website?<span class="ic">+</span></button>
+          <div class="faq-a"><p>Not always. If your current site converts, we'll point traffic at it. If it's holding you back, a conversion-built site is included in the Growth plan — because sending leads to a weak site wastes the whole engine.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q">Do you only work with local businesses?<span class="ic">+</span></button>
-          <div class="faq-a"><p>That's my focus — I know what makes a nearby customer pick up the phone or fill out the form. Reach out and we'll see if it's a fit.</p></div>
+          <button class="faq-q">Do you work with my competitors?<span class="ic">+</span></button>
+          <div class="faq-a"><p>Never. I take one client per service area. Once your area is taken, your local competitors can't hire me — that exclusivity is part of the deal.</p></div>
         </div>
       </div>
     </div>
@@ -803,12 +939,12 @@ footer{padding:70px 0 50px}
 <section id="contact">
   <div class="wrap">
     <div class="cta reveal">
-      <h2>More calls start<br>with a better site.</h2>
-      <p>Free 20-minute strategy call. No pitch, no pressure — just a clear plan to turn your site into a lead-generating machine.</p>
-      <a href="#contact" class="btn btn--light" data-book>Book your free call
+      <h2>Ready to own Google<br>in your area?</h2>
+      <p>Free 15-minute discovery call. I'll check if your area is still open, look at your current Google presence, and show you exactly where the leads are leaking.</p>
+      <a href="#contact" class="btn btn--light" data-book>Book your 15-min discovery call
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <div class="cta-risk">✓ Built to generate leads — or I keep working until it does.</div>
+      <div class="cta-risk">✓ More qualified calls in 90 days — or you don't pay.</div>
     </div>
   </div>
 </section>
@@ -819,12 +955,12 @@ footer{padding:70px 0 50px}
     <div class="foot-top">
       <div>
         <a href="#" class="logo-link" aria-label="MTM Marketing — home"><img class="logo-img" src="mtm-logo-t.png" alt="MTM Marketing" style="height:62px" /></a>
-        <p style="margin-top:18px">Conversion-focused web design for local businesses. Your website is a revenue tool.</p>
+        <p style="margin-top:18px">Done-for-you Google lead generation for local trades. We fill your calendar, not just your website.</p>
       </div>
       <div class="foot-cols">
         <div class="foot-col">
           <h4>Menu</h4>
-          <a href="#work">Work</a><a href="#services">Services</a><a href="#about">Founder</a><a href="#faq">FAQ</a>
+          <a href="#how">How it works</a><a href="#results">Results</a><a href="#work">Work</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
         </div>
         <div class="foot-col">
           <h4>Connect</h4>
