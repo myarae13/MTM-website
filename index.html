@@ -568,6 +568,64 @@ footer{padding:70px 0 50px}
 .area-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--orange)}
 
 /* ============================================================
+   TOP TICKER (inside fixed header, above nav)
+   ============================================================ */
+.ticker{background:var(--orange);overflow:hidden;border-bottom:1px solid rgba(31,42,74,.18)}
+.tkrow{display:flex;gap:0;width:max-content;animation:scroll 34s linear infinite;padding:8px 0}
+.tkrow span{color:var(--cream);font-size:12.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;display:inline-flex;align-items:center;gap:16px;padding:0 26px}
+.tkrow span::after{content:"◆";font-size:8px;opacity:.7}
+
+/* ============================================================
+   PROBLEM CLOSING LINE
+   ============================================================ */
+.prob-close{text-align:center;max-width:660px;margin:46px auto 0;font-size:18px;color:var(--muted)}
+.prob-close b{color:var(--navy)}
+
+/* ============================================================
+   CHANNEL MINI-BARS (where the calls come from)
+   ============================================================ */
+.chan-bars{margin:2px 0 22px}
+.chan-bars .cap{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.cbar{display:flex;align-items:center;gap:12px;margin:10px 0}
+.cbar .rk{width:26px;font-size:13px;font-weight:700;color:var(--navy)}
+.cbar .track{flex:1;height:9px;background:var(--paper-2);border-radius:99px;overflow:hidden}
+.cbar .fill{height:100%;background:var(--orange);border-radius:99px}
+.cbar .pct{width:42px;text-align:right;font-size:13px;font-weight:700;color:var(--navy)}
+
+/* ============================================================
+   CLIENT WINS (horizontal scroll cards)
+   ============================================================ */
+.wins{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(300px,340px);gap:22px;overflow-x:auto;padding:6px 0 24px;scroll-snap-type:x mandatory}
+.wins::-webkit-scrollbar{height:8px}
+.wins::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+.win{background:var(--navy);color:#fff;border:1px solid var(--navy);border-radius:16px;padding:28px;scroll-snap-align:start}
+.win .wtag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--cream);background:rgba(232,201,138,.14);border:1px solid rgba(232,201,138,.32);padding:6px 13px;border-radius:999px;margin-bottom:20px}
+.win h3{font-size:20px;color:#fff;margin-bottom:6px}
+.win .wrow{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid rgba(255,255,255,.13);font-size:14px}
+.win .wrow .k{color:rgba(255,255,255,.6)}
+.win .wrow .v{color:#fff;font-weight:600}
+.win .amount{font-family:var(--font-display);font-size:34px;color:var(--cream);margin-top:16px;line-height:1}
+.win .amount .l{display:block;font-family:var(--font-body);font-size:12px;color:rgba(255,255,255,.6);font-weight:500;margin-top:6px;letter-spacing:.02em}
+.wins-hint{text-align:center;font-size:13px;color:var(--muted);margin-top:8px}
+
+/* ============================================================
+   GUARANTEE MATH BOX
+   ============================================================ */
+.promise-pill{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#9be6b4;background:rgba(72,187,120,.14);border:1px solid rgba(72,187,120,.4);padding:7px 15px;border-radius:999px;margin-bottom:8px}
+.math{background:var(--slate);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:6px 24px;margin-top:28px;max-width:560px}
+.mrow{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:16px 0;border-top:1px solid rgba(255,255,255,.12);font-size:15px;color:rgba(255,255,255,.82)}
+.mrow:first-child{border-top:none}
+.mrow .v{font-family:var(--font-display);color:#fff;font-size:19px}
+.mrow.win-row{background:rgba(47,143,78,.16);margin:0 -24px;padding:18px 24px;border-radius:0 0 15px 15px;border-top:1px solid rgba(72,187,120,.32)}
+.mrow.win-row .k{color:#9be6b4;font-weight:700}
+.mrow.win-row .v{color:#9be6b4;font-size:27px}
+.math-note{font-size:13px;color:rgba(255,255,255,.6);text-align:center;margin:16px 0 4px;font-style:italic}
+
+/* pricing: commitment + free-audit note */
+.price-audit{font-size:12px;color:var(--muted);text-align:center;margin-top:14px}
+.price.featured .price-audit{color:rgba(255,255,255,.55)}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media(max-width:980px){
@@ -597,12 +655,19 @@ footer{padding:70px 0 50px}
 
 <!-- ============================================================ NAV ============================================================ -->
 <header id="hdr">
+  <!-- EDIT: rotating announcement / proof line -->
+  <div class="ticker">
+    <div class="tkrow">
+      <span>More calls from Google, every month</span><span>One client per service area</span><span>Month-to-month · no lock-in</span><span>More calls in 90 days or you don't pay</span>
+      <span>More calls from Google, every month</span><span>One client per service area</span><span>Month-to-month · no lock-in</span><span>More calls in 90 days or you don't pay</span>
+    </div>
+  </div>
   <div class="wrap">
     <nav>
       <a href="#" class="logo-link" aria-label="MTM Marketing — home"><img class="logo-img" src="mtm-logo-t.png" alt="MTM Marketing" /></a>
       <div class="nav-links">
         <a href="#how">How it works</a>
-        <a href="#results">Results</a>
+        <a href="#wins">Results</a>
         <a href="#work">Work</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
@@ -623,31 +688,34 @@ footer{padding:70px 0 50px}
     <span class="kicker fade-up d1" style="margin-bottom:22px">Done-for-you Google lead generation for local trades</span>
     <!-- EDIT: headline -->
     <h1 class="fade-up d1">If you're not on Google,<br>you're handing jobs to<br>the <span class="chroma--dark">competition.</span></h1>
-    <p class="hero-sub fade-up d2">MTM builds and runs your entire Google lead engine — Business Profile, Google Ads, and a site built to convert — so your phone rings with ready-to-buy local customers. You run the jobs. We run the leads.</p>
-    <!-- value props -->
-    <div class="vprops fade-up d2">
-      <span class="vprop">Google Business Profile</span>
-      <span class="vprop">Google &amp; Local Services Ads</span>
-      <span class="vprop">A site that converts</span>
-    </div>
+    <p class="hero-sub fade-up d2">MTM builds and runs your entire Google lead engine — Business Profile, Google Ads, and a site built to convert — so your phone rings with ready-to-buy local customers. We guarantee <b style="color:#fff">more calls in 90 days, or you don't pay.</b></p>
     <div class="hero-cta-row fade-up d3">
       <a href="#contact" class="btn" data-book>Book your 15-min discovery call
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <a href="#results" class="btn btn--ghost">See real results</a>
+      <a href="#wins" class="btn btn--ghost">See real results</a>
+    </div>
+    <div class="trust-row fade-up d3" style="justify-content:center">
+      <span class="stars">★★★★★</span>
+      <span class="t"><b>5.0</b> from local trade owners · Month-to-month · One client per area</span>
     </div>
     <div class="hero-ribbon fade-up d3"><span class="mk">✓</span> More qualified calls in 90 days — or you don't pay.</div>
   </div>
 </section>
 
-<!-- ============================================================ SOCIAL PROOF BAR ============================================================ -->
-<section class="proofbar" style="padding-top:34px;padding-bottom:34px">
+<!-- ============================================================ TRUST STRIP (logos) ============================================================ -->
+<section style="padding:64px 0">
   <div class="wrap">
-    <!-- EDIT: swap in your real numbers -->
-    <div class="row reveal">
-      <div class="pb"><div class="n">120<small>+</small></div><div class="l">Avg. inbound calls / month our clients get from Google</div></div>
-      <div class="pb"><div class="n">5.0<small>★</small></div><div class="l">Rated 5.0 across client reviews</div></div>
-      <div class="pb"><div class="n">1</div><div class="l">Client per service area — your competitors can't hire us</div></div>
+    <div class="sec-head reveal" style="margin-bottom:8px">
+      <span class="kicker" style="justify-content:center">Trusted by local trades</span>
+      <h2 style="font-size:clamp(26px,3.4vw,40px)">Real trades. Real revenue.</h2>
+    </div>
+    <!-- EDIT: replace with real client / association logos -->
+    <div class="marquee" style="margin-top:36px">
+      <div class="marquee-track">
+        <span>APEX FLOORING</span><span>NORTHGATE ROOFING</span><span>SUMMIT REMODELING</span><span>OAK &amp; STONE</span><span>TRUE LINE TILE</span><span>CEDAR CREEK LANDSCAPES</span>
+        <span>APEX FLOORING</span><span>NORTHGATE ROOFING</span><span>SUMMIT REMODELING</span><span>OAK &amp; STONE</span><span>TRUE LINE TILE</span><span>CEDAR CREEK LANDSCAPES</span>
+      </div>
     </div>
   </div>
 </section>
@@ -657,29 +725,29 @@ footer{padding:70px 0 50px}
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="kicker" style="justify-content:center">Sound familiar?</span>
-      <h2>Why good trades stay <span class="hl">invisible</span> online.</h2>
-      <p>If your phone only rings from word-of-mouth, it's usually one of these three leaks — and each one quietly hands jobs to the contractor down the road.</p>
+      <h2>You didn't build a real business to stay <span class="hl">stuck here</span>.</h2>
     </div>
     <div class="prob-grid">
       <article class="prob reveal">
         <span class="num">01</span>
-        <h3>You live on referrals alone</h3>
-        <p>Word-of-mouth built the business — but it can't scale it. When referrals slow down, the calendar goes quiet, and every month starts back at zero.</p>
+        <h3>Your phone only rings on referrals</h3>
+        <p>Word-of-mouth built the business — but it can't scale it. One quiet month and the whole pipeline dries up, and you start back at zero.</p>
         <span class="cost">Unpredictable, feast-or-famine months</span>
       </article>
       <article class="prob reveal">
         <span class="num">02</span>
-        <h3>You're buying garbage leads</h3>
-        <p>Angi, Thumbtack and HomeAdvisor sell the same lead to five contractors. You pay to fight over tyre-kickers and race competitors to the bottom on price.</p>
-        <span class="cost">Money wasted on shared, low-intent leads</span>
+        <h3>You're buying leads that waste your time</h3>
+        <p>Angi, Thumbtack and HomeAdvisor sell the same "lead" to five contractors. You pay upfront to fight over tyre-kickers and get ghosted.</p>
+        <span class="cost">Money burned on shared, low-intent leads</span>
       </article>
       <article class="prob reveal">
         <span class="num">03</span>
-        <h3>Competitors own Google — you don't</h3>
-        <p>When a nearby customer searches for what you do, someone else shows up first in the map pack. They get the call — even when your work is better.</p>
-        <span class="cost">Ready-to-buy jobs going to rivals weekly</span>
+        <h3>Your competitor shows up — you don't</h3>
+        <p>They're not a better contractor. They just show up first when homeowners search. That's the only difference — and it's costing you jobs weekly.</p>
+        <span class="cost">Ready-to-buy jobs going to rivals</span>
       </article>
     </div>
+    <p class="prob-close reveal">You already know the problem. You're world-class on the job site — and invisible on Google. <b>We fix that.</b></p>
   </div>
 </section>
 
@@ -688,66 +756,123 @@ footer{padding:70px 0 50px}
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="kicker" style="justify-content:center">How it works</span>
-      <h2>Two channels. One phone that <span class="hl">won't stop</span> ringing.</h2>
+      <h2>Two Google channels. One <span class="hl">unfair</span> advantage.</h2>
       <p>We dominate the two places ready-to-buy customers actually look — the Google map pack and Google's paid results — and point both at a site built to turn clicks into calls.</p>
     </div>
     <div class="channels">
       <div class="channel free reveal">
         <span class="tag">Channel 1 · Free leads</span>
         <h3>Google Business Profile</h3>
-        <p class="sub">The map pack that shows up before anyone scrolls. Organic calls, zero cost per lead.</p>
+        <p class="sub">The map pack that shows up before anyone scrolls. Organic calls, $0 per lead.</p>
+        <div class="chan-bars">
+          <div class="cap">Where Google sends the calls</div>
+          <div class="cbar"><span class="rk">#1</span><span class="track"><span class="fill" style="width:44%"></span></span><span class="pct">44%</span></div><div class="cbar"><span class="rk">#2</span><span class="track"><span class="fill" style="width:28%"></span></span><span class="pct">28%</span></div><div class="cbar"><span class="rk">#3</span><span class="track"><span class="fill" style="width:16%"></span></span><span class="pct">16%</span></div><div class="cbar"><span class="rk">#4+</span><span class="track"><span class="fill" style="width:8%"></span></span><span class="pct">8%</span></div>
+        </div>
         <ul class="chan-list">
-          <li><span class="mk">✓</span> Rank in the local 3-pack, where ~44% of clicks land</li>
+          <li><span class="mk">✓</span> #1 in the map pack is where ~44% of calls land — we keep you there</li>
           <li><span class="mk">✓</span> $0 per lead — organic calls, not paid clicks</li>
           <li><span class="mk">✓</span> 4× faster review growth to build instant trust</li>
-          <li><span class="mk">✓</span> Optimised to lock nearby competitors out of your area</li>
+          <li><span class="mk">✓</span> Your area is locked out — no competitor can hire us in it</li>
         </ul>
         <div class="bigstat"><span class="n">78+</span><span class="t">profile calls / month (client average)</span></div>
       </div>
       <div class="channel paid reveal">
-        <span class="tag">Channel 2 · Paid leads</span>
+        <span class="tag">Channel 2 · Google Guaranteed</span>
         <h3>Google &amp; Local Services Ads</h3>
-        <p class="sub">Top-of-page the day we launch — with the Google Guaranteed badge and pay-per-call pricing.</p>
+        <p class="sub">Top-of-page from day one — with the Google Guaranteed badge and pay-per-call pricing.</p>
+        <div class="chan-bars">
+          <div class="cap">How paid calls break down</div>
+          <div class="cbar"><span class="rk">#1</span><span class="track"><span class="fill" style="width:52%"></span></span><span class="pct">52%</span></div><div class="cbar"><span class="rk">#2</span><span class="track"><span class="fill" style="width:29%"></span></span><span class="pct">29%</span></div><div class="cbar"><span class="rk">#3</span><span class="track"><span class="fill" style="width:13%"></span></span><span class="pct">13%</span></div><div class="cbar"><span class="rk">#4+</span><span class="track"><span class="fill" style="width:6%"></span></span><span class="pct">6%</span></div>
+        </div>
         <ul class="chan-list">
           <li><span class="mk">✓</span> Google Guaranteed badge = ~3× higher click-through</li>
-          <li><span class="mk">✓</span> Show up at the top from day one — leads now, not months out</li>
-          <li><span class="mk">✓</span> On LSA, you only pay per qualified call</li>
           <li><span class="mk">✓</span> Top-3 placement captures ~81% of all paid calls</li>
+          <li><span class="mk">✓</span> On LSA you only pay per qualified call — zero wasted budget</li>
+          <li><span class="mk">✓</span> Live from day one, while your organic rankings compound</li>
         </ul>
-        <div class="bigstat"><span class="n">Day 1</span><span class="t">leads start flowing, while SEO compounds</span></div>
+        <div class="bigstat"><span class="n">Day 1</span><span class="t">leads start flowing — no waiting months</span></div>
       </div>
     </div>
     <p class="price-reassure reveal" style="margin-top:34px"><span class="mk">→</span> And every click lands on a <b>site we build to convert</b> — so the traffic we send actually turns into booked jobs.</p>
   </div>
 </section>
 
-<!-- ============================================================ LIVE RESULTS DASHBOARD ============================================================ -->
-<section id="results" class="band-dark">
+<!-- ============================================================ TESTIMONIALS ============================================================ -->
+<section class="band-dark">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="kicker" style="justify-content:center">Real results</span>
-      <h2>Real calls. Real clients. <span class="chroma--dark">Tracked.</span></h2>
-      <p>We measure every call, form and lead — so you always know exactly what your investment is bringing back.</p>
+      <span class="kicker" style="justify-content:center">Hear it from trades</span>
+      <h2>Real trades. <span class="chroma--dark">Real results.</span></h2>
+      <p>The kind of month that changes a business — in their words.</p>
     </div>
-    <div class="dash reveal">
-      <div class="dash-head">
-        <div>
-          <div class="t">Client lead activity</div>
-          <!-- EDIT: date range -->
-          <div class="rng">Jun 15 – Jul 15, 2026 · sample of 10 clients</div>
-        </div>
-        <span class="live-pill"><span class="dot"></span> LIVE</span>
+    <!-- EDIT: swap in real testimonials (or drop in testimonial videos) -->
+    <div class="rev-grid reveal">
+      <div class="rev" style="background:var(--slate);border-color:rgba(255,255,255,.12)">
+        <div class="stars">★★★★★</div>
+        <p style="color:#fff">"We went from chasing referrals to turning work away. The phone rings with real local jobs now — not tyre-kickers off a lead site."</p>
+        <div class="by" style="color:rgba(255,255,255,.65)"><b style="color:#fff">[Client Name]</b> · Flooring, [City]</div>
       </div>
-      <!-- EDIT: replace with your real numbers before publishing -->
-      <div class="dash-tiles">
-        <div class="dtile"><div class="n">1,204</div><div class="l">Total interactions</div><div class="up">↑ 32% MoM</div></div>
-        <div class="dtile"><div class="n">786</div><div class="l">Google Profile calls</div><div class="up">↑ 21% MoM</div></div>
-        <div class="dtile"><div class="n">318</div><div class="l">Website calls &amp; forms</div><div class="up">↑ 44% MoM</div></div>
-        <div class="dtile"><div class="n">241</div><div class="l">Ads &amp; LSA calls</div><div class="up">↑ 18% MoM</div></div>
+      <div class="rev" style="background:var(--slate);border-color:rgba(255,255,255,.12)">
+        <div class="stars">★★★★★</div>
+        <p style="color:#fff">"Booked more estimates in the first 60 days than the whole year before. Best part — I actually see where every call comes from."</p>
+        <div class="by" style="color:rgba(255,255,255,.65)"><b style="color:#fff">[Client Name]</b> · Remodeling, [City]</div>
       </div>
-      <div class="dash-bars"><div class="bar" style="height:34%"></div><div class="bar" style="height:41%"></div><div class="bar" style="height:38%"></div><div class="bar" style="height:50%"></div><div class="bar" style="height:56%"></div><div class="bar" style="height:52%"></div><div class="bar" style="height:64%"></div><div class="bar" style="height:71%"></div><div class="bar" style="height:68%"></div><div class="bar" style="height:80%"></div><div class="bar" style="height:88%"></div><div class="bar" style="height:100%"></div></div>
-      <div class="dash-note">Illustrative dashboard — connect your Google Business Profile &amp; Ads data to show live client numbers.</div>
+      <div class="rev" style="background:var(--slate);border-color:rgba(255,255,255,.12)">
+        <div class="stars">★★★★★</div>
+        <p style="color:#fff">"They own the map pack in my town now. My competitors used to be on top — not anymore. Wish I'd done this two years ago."</p>
+        <div class="by" style="color:rgba(255,255,255,.65)"><b style="color:#fff">[Client Name]</b> · Roofing, [City]</div>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- ============================================================ CLIENT WINS ============================================================ -->
+<section id="wins">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker" style="justify-content:center">Recent wins · straight from the pipeline</span>
+      <h2>Here's what our clients have been <span class="hl">closing</span>.</h2>
+      <p>Not lifetime totals — individual jobs booked from leads we generated. Real trades. Real revenue.</p>
+    </div>
+    <!-- EDIT: replace with your real closed-job wins -->
+    <div class="wins reveal">
+      <div class="win">
+        <span class="wtag">✦ Client win</span>
+        <h3>Apex Flooring just closed a new job</h3>
+        <div class="wrow"><span class="k">Customer source</span><span class="v">Google Profile</span></div>
+        <div class="wrow"><span class="k">Service area</span><span class="v">[City]</span></div>
+        <div class="amount">$18,167<span class="l">job booked from a lead we generated</span></div>
+      </div>
+      <div class="win">
+        <span class="wtag">✦ Client win</span>
+        <h3>Summit Remodeling just closed a new job</h3>
+        <div class="wrow"><span class="k">Customer source</span><span class="v">Local Services Ad</span></div>
+        <div class="wrow"><span class="k">Service area</span><span class="v">[City]</span></div>
+        <div class="amount">$41,300<span class="l">job booked from a lead we generated</span></div>
+      </div>
+      <div class="win">
+        <span class="wtag">✦ Client win</span>
+        <h3>Northgate Roofing just closed a new job</h3>
+        <div class="wrow"><span class="k">Customer source</span><span class="v">Google Profile</span></div>
+        <div class="wrow"><span class="k">Service area</span><span class="v">[City]</span></div>
+        <div class="amount">$12,480<span class="l">job booked from a lead we generated</span></div>
+      </div>
+      <div class="win">
+        <span class="wtag">✦ Client win</span>
+        <h3>True Line Tile just closed a new job</h3>
+        <div class="wrow"><span class="k">Customer source</span><span class="v">Google Ads</span></div>
+        <div class="wrow"><span class="k">Service area</span><span class="v">[City]</span></div>
+        <div class="amount">$9,240<span class="l">job booked from a lead we generated</span></div>
+      </div>
+      <div class="win">
+        <span class="wtag">✦ Client win</span>
+        <h3>Cedar Creek Landscapes just closed a new job</h3>
+        <div class="wrow"><span class="k">Customer source</span><span class="v">Google Profile</span></div>
+        <div class="wrow"><span class="k">Service area</span><span class="v">[City]</span></div>
+        <div class="amount">$23,900<span class="l">job booked from a lead we generated</span></div>
+      </div>
+    </div>
+    <p class="wins-hint reveal">← scroll for more wins →</p>
   </div>
 </section>
 
@@ -790,44 +915,67 @@ footer{padding:70px 0 50px}
   <div class="wrap">
     <div class="guarantee reveal">
       <div class="inner">
-        <span class="kicker">Our guarantee</span>
-        <h2>More calls in 90 days — or you don't pay.</h2>
-        <p>If we don't get you more qualified inbound calls than you're getting today within 90 days, you don't pay for that period — and you keep everything we built. All the risk sits with us, not you.</p>
-        <ul class="gua-list">
-          <li><span class="mk">✓</span> A clear baseline agreed before we start</li>
-          <li><span class="mk">✓</span> Every call &amp; lead tracked and reported</li>
-          <li><span class="mk">✓</span> Month-to-month — cancel any time, no lock-in</li>
-          <li><span class="mk">✓</span> One client per service area, always</li>
-        </ul>
+        <span class="promise-pill">✓ More calls in 90 days or you don't pay</span>
+        <h2>The guarantee — or you don't pay.</h2>
+        <p>Here's the deal. In your first 90 days with us, we'll generate you more qualified inbound calls than you're getting today. If we don't, you don't pay for that period — and you keep everything we built. No asterisk. No fine print.</p>
+        <!-- EDIT: set the math to your real plan price + average job value -->
+        <div class="math">
+          <div class="mrow"><span class="k">Your investment (Growth)</span><span class="v">$1,500 / mo</span></div>
+          <div class="mrow"><span class="k">Average job value</span><span class="v">~$6,000</span></div>
+          <div class="mrow"><span class="k">Jobs to make it pay in 90 days</span><span class="v">just 3</span></div>
+          <div class="mrow win-row"><span class="k">A single booked job covers it</span><span class="v">$6,000+</span></div>
+        </div>
+        <div class="math-note">Most clients clear that in the first few weeks. That's why we can put the risk on us.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CREDIBILITY (non-personal) ============================================================ -->
+<section>
+  <div class="wrap">
+    <div class="trust2 reveal">
+      <div class="copy">
+        <span class="kicker">In the trenches, not just watching</span>
+        <h2>We live in the trades — <span class="hl">not just the ads</span>.</h2>
+        <p>Most marketing agencies have never set foot on a job site. We built MTM around one industry: local trades. We know how homeowners actually search, what makes them call, and what a booked job is really worth — because that's the only thing we do.</p>
+        <p>That focus is the edge. Every profile, ad, and page is tuned to how your customers buy — not what wins design awards.</p>
+      </div>
+      <!-- EDIT: swap in real photos (job sites, team, events) -->
+      <div class="shotstack">
+        <div class="shot"><span class="ph">Photo</span></div>
+        <div class="shot"><span class="ph">Photo</span></div>
+        <div class="shot"><span class="ph">Photo</span></div>
+        <div class="shot"><span class="ph">Photo</span></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================ PRICING ============================================================ -->
-<section id="pricing">
+<section id="pricing" class="band-dark">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="kicker" style="justify-content:center">Simple, honest pricing</span>
-      <h2>Pick your <span class="hl">lead engine</span>.</h2>
-      <p>Flat monthly pricing, agreed up front. Month-to-month — no contracts, no lock-in, no surprises.</p>
-      <div style="margin-top:20px"><span class="area-badge"><span class="dot"></span> Month-to-month · one client per service area</span></div>
+      <span class="kicker" style="justify-content:center">Pick your tier</span>
+      <h2>Pick the tier that fits <span class="chroma--dark">where you are</span>.</h2>
+      <p>Flat monthly pricing, agreed up front. Month-to-month — no contracts, no lock-in. One client per service area.</p>
     </div>
 
     <!-- EDIT: set your real prices + what's included in each tier -->
     <div class="price-grid reveal">
       <div class="price">
-        <div class="price-name">Launch</div>
-        <div class="price-desc">Get found on Google's map pack and start turning searches into calls.</div>
+        <div class="price-name">Starter</div>
+        <div class="price-desc">Own the map pack and start turning searches into calls.</div>
         <div class="price-amt">$750<small>/mo</small></div>
-        <div class="price-note">Best for getting the engine started.</div>
+        <div class="price-note">Month-to-month commitment</div>
         <ul class="price-list">
-          <li><span class="mk">✓</span> Google Business Profile optimisation &amp; management</li>
+          <li><span class="mk">✓</span> Full Google Business Profile optimisation &amp; management</li>
           <li><span class="mk">✓</span> Local SEO to climb the map pack</li>
           <li><span class="mk">✓</span> Call &amp; lead tracking dashboard</li>
-          <li><span class="mk">✓</span> Monthly reporting</li>
+          <li><span class="mk">✓</span> Monthly performance report</li>
         </ul>
-        <a href="#contact" class="btn btn--ghost" data-book>Get started</a>
+        <a href="#contact" class="btn btn--ghost" data-book>See if you qualify</a>
+        <div class="price-audit">Free Google audit on your first call</div>
       </div>
 
       <div class="price featured">
@@ -835,64 +983,49 @@ footer{padding:70px 0 50px}
         <div class="price-name">Growth</div>
         <div class="price-desc">Both channels running — organic + paid — pointed at a site that converts.</div>
         <div class="price-amt">$1,500<small>/mo</small></div>
-        <div class="price-note">Best for filling the calendar, fast.</div>
+        <div class="price-note">Best value · backed by the guarantee</div>
         <ul class="price-list">
-          <li><span class="mk">✓</span> Everything in Launch</li>
+          <li><span class="mk">✓</span> Everything in Starter, plus:</li>
           <li><span class="mk">✓</span> Google Ads + Local Services Ads managed</li>
           <li><span class="mk">✓</span> Conversion-built website included</li>
-          <li><span class="mk">✓</span> Backed by the 90-day guarantee</li>
+          <li><span class="mk">✓</span> Review generation &amp; reputation management</li>
+          <li><span class="mk">✓</span> More calls in 90 days or you don't pay</li>
         </ul>
-        <a href="#contact" class="btn btn--light" data-book>Book a call
+        <a href="#contact" class="btn btn--light" data-book>See if you qualify
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
+        <div class="price-audit">Free Google audit on your first call</div>
       </div>
 
       <div class="price">
-        <div class="price-name">Domination</div>
-        <div class="price-desc">Own your service area — the full done-for-you lead engine, managed end to end.</div>
+        <div class="price-name">Done-for-you</div>
+        <div class="price-desc">Own your service area — the full lead engine, managed end to end.</div>
         <div class="price-amt">Custom<small></small></div>
-        <div class="price-note">Best for market leaders who want it all.</div>
+        <div class="price-note">For market leaders</div>
         <ul class="price-list">
-          <li><span class="mk">✓</span> Everything in Growth</li>
+          <li><span class="mk">✓</span> Everything in Growth, plus:</li>
           <li><span class="mk">✓</span> Larger managed ad budget &amp; multi-service targeting</li>
           <li><span class="mk">✓</span> Multi-location / multi-crew structure</li>
-          <li><span class="mk">✓</span> Priority support &amp; strategy calls</li>
+          <li><span class="mk">✓</span> Dedicated account manager &amp; strategy calls</li>
         </ul>
-        <a href="#contact" class="btn btn--ghost" data-book>Talk to me</a>
+        <a href="#contact" class="btn btn--ghost" data-book>See if you qualify</a>
+        <div class="price-audit">Free Google audit on your first call</div>
       </div>
     </div>
-
-    <p class="price-reassure reveal"><span class="mk">✓</span> Every plan is backed by the guarantee — <b>more calls in 90 days, or you don't pay.</b></p>
   </div>
 </section>
 
 <!-- ============================================================ NOT FOR EVERYONE (qualify) ============================================================ -->
-<section>
+<section class="statement">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker" style="justify-content:center">Honestly? It's not for everyone</span>
-      <h2>Is this <span class="hl">right for you</span>?</h2>
-      <p>I take one client per service area, so I'm picky about fit. Here's who this works for — and who it doesn't.</p>
-    </div>
-    <div class="qual">
-      <div class="qcol yes reveal">
-        <div class="qh"><span class="qbadge">✓</span> This is for you if…</div>
-        <ul class="qlist">
-          <li><span class="mk">✓</span> You're an established local trade doing solid revenue already</li>
-          <li><span class="mk">✓</span> You can handle more work — crews, capacity, or room to grow</li>
-          <li><span class="mk">✓</span> You (or your team) actually answer the phone</li>
-          <li><span class="mk">✓</span> You want predictable lead flow, not a one-off website</li>
-        </ul>
-      </div>
-      <div class="qcol no reveal">
-        <div class="qh"><span class="qbadge">✕</span> It's not for you if…</div>
-        <ul class="qlist">
-          <li><span class="mk">✕</span> You're brand new with no reviews or track record yet</li>
-          <li><span class="mk">✕</span> You're already fully booked and can't take more jobs</li>
-          <li><span class="mk">✕</span> You want overnight results with no investment</li>
-          <li><span class="mk">✕</span> You're not ready to commit to a few months of momentum</li>
-        </ul>
-      </div>
+    <div class="reveal">
+      <span class="kicker" style="justify-content:center">Not for everyone</span>
+      <h2>We don't work with just <span class="accent">anyone</span>.</h2>
+      <p>We only work with local trades — that's the entire business. And we take <b style="color:#fff">one client per service area</b>: if we worked with two contractors in the same city, we'd just be competing against ourselves. So if you sign up and your area is open, that area is yours.</p>
+      <p><b style="color:#fff">Established trades only.</b> You need enough capacity to handle the lead volume we generate — and to make the math work in your favour. Licensed, insured, and ready to answer the phone. That's it.</p>
+      <div style="margin-top:34px"><a href="#contact" class="btn btn--light" data-book>Check if your area is open
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a></div>
     </div>
   </div>
 </section>
@@ -902,33 +1035,33 @@ footer{padding:70px 0 50px}
   <div class="wrap">
     <div class="faq-grid">
       <div class="reveal">
-        <span class="kicker">FAQ</span>
-        <h2 style="font-size:clamp(30px,4vw,52px);margin-top:18px"><span class="hl">Questions</span>, answered.</h2>
+        <span class="kicker">Common questions</span>
+        <h2 style="font-size:clamp(30px,4vw,52px);margin-top:18px">Real questions from <span class="hl">real trades</span>.</h2>
       </div>
       <div class="faq-list reveal">
         <div class="faq-item open">
-          <button class="faq-q">How much does it cost?<span class="ic">+</span></button>
-          <div class="faq-a"><p>Plans start at a flat monthly rate agreed up front — no hourly surprises. Ad spend (if you run ads) is separate and goes straight to Google. Book a discovery call and I'll recommend the right level for your area.</p></div>
-        </div>
-        <div class="faq-item">
           <button class="faq-q">How fast will I see results?<span class="ic">+</span></button>
           <div class="faq-a"><p>Paid channels (Google &amp; Local Services Ads) can bring calls within days of launch. Organic map-pack rankings build over the first 60–90 days — which is exactly why the guarantee is tied to 90 days.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q">Am I locked into a contract?<span class="ic">+</span></button>
-          <div class="faq-a"><p>No. Everything is month-to-month — cancel any time. The only reason to stay is that the phone keeps ringing.</p></div>
+          <button class="faq-q">I don't have a Google Business Profile. Will you set one up?<span class="ic">+</span></button>
+          <div class="faq-a"><p>Yes. If you don't have one — or it's a mess — we create and verify it, optimise it end to end, and manage it from there. It's the single biggest source of free local calls, so it's step one.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q">What if it doesn't work?<span class="ic">+</span></button>
-          <div class="faq-a"><p>If we don't beat your current call volume within 90 days, you don't pay for that period and you keep everything we built. The risk is on me, not you.</p></div>
+          <button class="faq-q">What's the catch with the guarantee?<span class="ic">+</span></button>
+          <div class="faq-a"><p>No catch. We agree a clear baseline before we start and track every call. If we don't beat it within 90 days, you don't pay for that period and you keep everything we built. The risk sits with us.</p></div>
         </div>
         <div class="faq-item">
-          <button class="faq-q">Do I need a new website?<span class="ic">+</span></button>
-          <div class="faq-a"><p>Not always. If your current site converts, we'll point traffic at it. If it's holding you back, a conversion-built site is included in the Growth plan — because sending leads to a weak site wastes the whole engine.</p></div>
+          <button class="faq-q">Do I need to be on Facebook or Instagram?<span class="ic">+</span></button>
+          <div class="faq-a"><p>No. We focus on where ready-to-buy customers already are — searching Google for a contractor right now. Social can support that later, but it's not where the booked jobs come from.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Can I cancel any time?<span class="ic">+</span></button>
+          <div class="faq-a"><p>Yes — everything is month-to-month. The only reason to stay is that the phone keeps ringing. No long contracts, no lock-in.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-q">Do you work with my competitors?<span class="ic">+</span></button>
-          <div class="faq-a"><p>Never. I take one client per service area. Once your area is taken, your local competitors can't hire me — that exclusivity is part of the deal.</p></div>
+          <div class="faq-a"><p>Never. One client per service area. Once your area is taken, your local competitors can't hire us — that exclusivity is part of the deal.</p></div>
         </div>
       </div>
     </div>
@@ -944,7 +1077,7 @@ footer{padding:70px 0 50px}
       <a href="#contact" class="btn btn--light" data-book>Book your 15-min discovery call
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <div class="cta-risk">✓ More qualified calls in 90 days — or you don't pay.</div>
+      <div class="cta-risk">✓ Free — no obligation. See if we're a fit.</div>
     </div>
   </div>
 </section>
@@ -960,7 +1093,7 @@ footer{padding:70px 0 50px}
       <div class="foot-cols">
         <div class="foot-col">
           <h4>Menu</h4>
-          <a href="#how">How it works</a><a href="#results">Results</a><a href="#work">Work</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+          <a href="#how">How it works</a><a href="#wins">Results</a><a href="#work">Work</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
         </div>
         <div class="foot-col">
           <h4>Connect</h4>
