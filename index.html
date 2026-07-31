@@ -196,6 +196,11 @@ nav{display:flex;align-items:center;justify-content:space-between;height:78px}
    SECTION SCAFFOLD
    ============================================================ */
 section{padding:110px 0}
+/* uneven section rhythm — equal padding on every band is a generated tell */
+#work{padding-bottom:120px}
+#about{padding-bottom:130px}
+.offer{padding:clamp(88px,9vw,124px) 0}
+#faq{padding:96px 0 130px}
 .sec-head{max-width:680px;margin:0 auto 64px;text-align:center}
 .sec-head h2{font-size:clamp(34px,4.6vw,58px);margin-top:18px}
 .sec-head p{color:var(--muted);font-size:18px;margin-top:18px}
@@ -741,9 +746,23 @@ footer{padding:70px 0 50px}
 .cap p{font-size:15px;color:var(--muted);line-height:1.65}
 .cap .n{font-family:var(--font-display);font-size:15px;color:var(--teal-cta);letter-spacing:.08em;display:block;margin-bottom:14px}
 
+/* nine pieces in a two-column grid leaves the last one stranded next to a
+   hole. Run it full width as a landscape row instead — the odd count
+   becomes deliberate rather than a gap. */
+.pf-grid .pf:last-child{
+  grid-column:1/-1;display:grid;align-items:start;
+  grid-template-columns:1.35fr 1fr;column-gap:40px;
+  padding-top:14px;border-top:1px solid var(--line);margin-top:10px;
+}
+.pf-grid .pf:last-child .pf-frame{grid-column:1;grid-row:1/span 3}
+.pf-grid .pf:last-child .pf-meta {grid-column:2;grid-row:1;padding-top:6px}
+.pf-grid .pf:last-child .pf-note {grid-column:2;grid-row:2}
+.pf-grid .pf:last-child .pf-facts{grid-column:2;grid-row:3}
+
 @media(max-width:980px){
   .pf-grid{grid-template-columns:1fr;gap:44px}
   .cap-grid{grid-template-columns:1fr}
+  .pf-grid .pf:last-child{display:flex;border-top:0;margin-top:0;padding-top:0}
 }
 @media(max-width:600px){
   .pf-meta{flex-wrap:wrap}
@@ -770,6 +789,13 @@ footer{padding:70px 0 50px}
   margin-left:-.02em;
 }
 .dual .l2 em{font-style:italic;color:var(--orange)}
+
+/* alternate heading voices so .dual isn't the only move on the page */
+.h-flat{font-family:var(--font-display);text-transform:uppercase;line-height:.96;letter-spacing:.005em}
+.h-serif{
+  font-family:var(--font-serif);font-style:italic;font-weight:400;
+  text-transform:none;line-height:1.06;letter-spacing:-.02em;
+}
 
 /* section heads: left-aligned editorial by default, centred only on request */
 .sec-head--ed{max-width:760px;margin:0 0 62px;text-align:left}
@@ -807,12 +833,6 @@ footer{padding:70px 0 50px}
   font-size:clamp(22px,3.4vw,48px);line-height:1.1;color:var(--butter);
   letter-spacing:-.02em;margin-top:.12em;
 }
-/* faint oversized ghost letterform bleeding off the right edge */
-.typeband::after{
-  content:attr(data-ghost);position:absolute;right:-.08em;bottom:-.28em;
-  font-family:var(--font-display);font-size:clamp(180px,30vw,440px);line-height:.7;
-  color:rgba(255,255,255,.045);pointer-events:none;text-transform:uppercase;
-}
 
 /* ---- outline pill button: the quiet CTA ---- */
 .btn--pill{
@@ -846,9 +866,14 @@ footer{padding:70px 0 50px}
 }
 
 /* ---- editorial figure: image floated with no card chrome ---- */
-.ed{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(40px,6vw,86px);align-items:center}
+/* deliberately off-centre: a true 50/50 split is the thing that reads
+   as generated. Columns are uneven and the figure sits high. */
+.ed{display:grid;grid-template-columns:1.18fr .82fr;gap:clamp(40px,6vw,92px);align-items:start}
+/* on .ed--flip the figure is the SECOND column, so the narrow share
+   has to go last for the copy to keep the wider half */
+.ed--tight{grid-template-columns:1.22fr .78fr}
 .ed--flip .ed-fig{order:2}
-.ed-fig{position:relative}
+.ed-fig{position:relative;margin-top:-14px}
 .ed-fig img{width:100%;height:auto;display:block}
 .ed-fig .cap{
   font-family:var(--font-serif);font-style:italic;font-size:15px;color:var(--muted);
@@ -902,7 +927,6 @@ footer{padding:70px 0 50px}
   .ed--flip .ed-fig{order:0}
   .sec-head--ed{margin-bottom:44px}
   .ed-fig--framed::before{display:none}
-  .typeband::after{display:none}
 }
 </style>
 </head>
@@ -946,7 +970,7 @@ footer{padding:70px 0 50px}
       <span class="l1">You built something that works.</span>
       <span class="l2">Your website hasn't caught up.</span>
     </h1>
-    <p class="hero-sub fade-up d2">I'm Mya. I build websites for local trade and home-service businesses — for the owner who's good at the work, busy on word of mouth, and quietly losing jobs to someone with a worse crew and a better website. <b style="color:#fff">If that's you, I can help.</b></p>
+    <p class="hero-sub fade-up d2">I'm Mya. I build websites for contractors and home-service companies. Most of my clients are already good at the actual work and stay busy on word of mouth. They also keep losing jobs to a company that isn't as good, but shows up first on Google. <b style="color:#fff">That's the part I fix.</b></p>
     <div class="hero-cta-row fade-up d3">
       <a href="#teardown" class="btn">Get a free site teardown
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -972,12 +996,12 @@ footer{padding:70px 0 50px}
           <span class="l1">You're not struggling.</span>
           <span class="l2" style="color:var(--butter)">You're stuck.</span>
         </h2>
-        <p style="color:rgba(255,255,255,.8)">You've got the trucks, the crew and the reviews. The work is good — people who hire you once hire you again, and half your jobs still come from someone telling their neighbour about you. Nothing about that is broken.</p>
-        <p style="color:rgba(255,255,255,.8)">What's broken is the shopfront. The site hasn't moved since 2016, it says about a third of what you actually do, and the company across town with the newer website is the one showing up first. <b style="color:#fff">That isn't a business problem. It's the cheapest problem you have left to fix.</b></p>
+        <p style="color:rgba(255,255,255,.8)">You've got trucks. You've got a crew, and reviews from people who meant them. The work is good enough that customers hire you twice, and a lot of your jobs still come from somebody telling their neighbor about you. None of that is broken.</p>
+        <p style="color:rgba(255,255,255,.8)">The storefront is. Your site hasn't changed since 2016. It lists maybe a third of what you actually do. And the company across town with the newer website is the one homeowners find first. <b style="color:#fff">Of everything on your list, that one is the cheapest to fix.</b></p>
       </div>
       <div class="ed-body">
         <p class="bigquote">Most owners already know something's off. <span class="hi">They just don't know which part.</span></p>
-        <p style="color:rgba(255,255,255,.66);max-width:420px;margin-top:26px">Is it the site? The photos? The search results? Or the fact that nobody can find your phone number on a phone? Figuring out which one is costing you the most is free — that's the part below.</p>
+        <p style="color:rgba(255,255,255,.66);max-width:420px;margin-top:26px">Is it the site? The photos? Where you land on Google? Or the fact that nobody can find your phone number on an actual phone? Working out which one costs you the most is free. That's the part below.</p>
       </div>
     </div>
   </div>
@@ -1002,7 +1026,7 @@ footer{padding:70px 0 50px}
      you for; --concept for self-initiated redesigns and spec pieces.
      ============================================================ -->
 <!-- full-bleed type band: the section is only its own name -->
-<div class="typeband" data-ghost="W">
+<div class="typeband">
   <div class="wrap">
     <h2 class="bigtype reveal">The Work
       <span class="sm">Three real businesses. Six I built to prove a point.</span>
@@ -1014,11 +1038,8 @@ footer{padding:70px 0 50px}
   <div class="wrap">
     <div class="sec-head--ed reveal">
       <span class="rule-label">What I've actually built</span>
-      <h2 class="dual">
-        <span class="l1">Nine sites,</span>
-        <span class="l2">none of them a template.</span>
-      </h2>
-      <p class="lede">Golf, flooring, masonry, pest control, hospitality. Every one designed and coded from scratch — because a business that took thirty years to build shouldn't be wearing a theme somebody else is also wearing.</p>
+      <h2 class="h-serif" style="font-size:clamp(36px,5vw,68px)">Nine sites, none of<br>them a template.</h2>
+      <p class="lede">Golf, flooring, masonry, pest control, restaurants. All of them drawn and coded from scratch. A business that took thirty years to build shouldn't be wearing a theme that four other companies in the same county are also wearing.</p>
     </div>
 
     <div class="work-filters reveal">
@@ -1044,7 +1065,7 @@ footer{padding:70px 0 50px}
           </div>
           <span class="pf-tag pf-tag--client">Client build</span>
         </div>
-        <p class="pf-note">A bold, personality-forward build for a woman-owned pest control company. Every pest gets its own page and custom icon, so someone searching "carpenter ants" lands somewhere that actually answers them.</p>
+        <p class="pf-note">A loud, personality-first build for a woman-owned pest control company. Every pest gets its own page and its own icon, so someone searching "carpenter ants" at 11pm lands somewhere that actually answers them.</p>
         <div class="pf-facts"><span>Next.js</span><span>12 pest pages</span><span>Custom icon set</span><span>Franchise + service funnels</span></div>
       </article>
 
@@ -1061,7 +1082,7 @@ footer{padding:70px 0 50px}
           </div>
           <span class="pf-tag pf-tag--client">Client build</span>
         </div>
-        <p class="pf-note">Navy and oak, built for a family flooring business running since 1984. The hero answers the question every flooring customer actually has — how long until I can walk on it — in three numbers.</p>
+        <p class="pf-note">Navy and oak, for a family flooring business that's been running since 1984. Every flooring customer has the same real question: how long until I can walk on it. The hero answers that in three numbers before anything else.</p>
         <div class="pf-facts"><span>React · Vite</span><span>Cure-time trust row</span><span>Estimate form in hero</span></div>
       </article>
 
@@ -1078,7 +1099,7 @@ footer{padding:70px 0 50px}
           </div>
           <span class="pf-tag pf-tag--client">Client build</span>
         </div>
-        <p class="pf-note">A masonry crew that sells to two very different buyers — builders and homeowners — so the hero form asks which one you are first, then changes the questions to match.</p>
+        <p class="pf-note">This crew sells to two completely different buyers, builders and homeowners, who need opposite things. So the hero form asks which one you are first, then changes the questions to match.</p>
         <div class="pf-facts"><span>React · Vite</span><span>Dual-audience form</span><span>Since 1958</span></div>
       </article>
 
@@ -1095,7 +1116,7 @@ footer{padding:70px 0 50px}
           </div>
           <span class="pf-tag pf-tag--concept">Concept redesign</span>
         </div>
-        <p class="pf-note">A self-initiated redesign of a 27-hole public course site — built to prove that a golf course can book tee times, weddings, outings, lessons and simulators from one page without burying any of them.</p>
+        <p class="pf-note">My own redesign of a 27-hole public course. Golf sites usually bury four of their five revenue streams. This one books tee times, weddings, outings, lessons and simulator bays off a single page without hiding any of them.</p>
         <div class="pf-facts"><span>20 pages</span><span>Custom tree-line masks</span><span>5 inquiry funnels</span><span>Fraunces · Hanken Grotesk</span></div>
       </article>
 
@@ -1112,7 +1133,7 @@ footer{padding:70px 0 50px}
           </div>
           <span class="pf-tag pf-tag--concept">Concept</span>
         </div>
-        <p class="pf-note">A spec piece exploring editorial typography and a tide-driven menu concept — how far a hospitality site can lean into atmosphere and still put reservations one click away.</p>
+        <p class="pf-note">A spec piece about editorial typography and a menu that changes with the tide. Mostly a test of how far a restaurant site can lean into atmosphere while keeping reservations one click away.</p>
         <div class="pf-facts"><span>Editorial layout</span><span>Reservation-first</span><span>Custom wave folds</span></div>
       </article>
 
@@ -1129,7 +1150,7 @@ footer{padding:70px 0 50px}
           </div>
           <span class="pf-tag pf-tag--concept">Concept</span>
         </div>
-        <p class="pf-note">Heavy display type and high-contrast blocks — a study in making a training facility feel serious without tipping into intimidating.</p>
+        <p class="pf-note">Heavy display type and hard contrast. I wanted to see how serious a gym could look before it stopped feeling welcoming to anyone who isn't already in shape.</p>
         <div class="pf-facts"><span>Membership funnel</span><span>Class schedule</span><span>High-contrast type</span></div>
       </article>
 
@@ -1146,7 +1167,7 @@ footer{padding:70px 0 50px}
           </div>
           <span class="pf-tag pf-tag--concept">Concept</span>
         </div>
-        <p class="pf-note">The opposite end of the range from Ironhouse — calm, light and generous with whitespace, built to lower the blood pressure of someone who has been putting off an appointment.</p>
+        <p class="pf-note">The far end of the range from Ironhouse. Light, calm, a lot of empty space. Built for someone who has been putting off an appointment for two years and needs their blood pressure to come down before they book.</p>
         <div class="pf-facts"><span>Booking-first</span><span>Soft palette</span><span>Treatment cards</span></div>
       </article>
 
@@ -1163,7 +1184,7 @@ footer{padding:70px 0 50px}
           </div>
           <span class="pf-tag pf-tag--concept">Concept</span>
         </div>
-        <p class="pf-note">Restrained and typographic — a study in signalling competence through hierarchy and spacing rather than stock photos of handshakes.</p>
+        <p class="pf-note">Restrained and almost entirely typographic. Law firms default to stock photos of handshakes. Hierarchy and spacing signal competence better, and cost nothing.</p>
         <div class="pf-facts"><span>Practice areas</span><span>Consultation funnel</span><span>Serif hierarchy</span></div>
       </article>
 
@@ -1180,7 +1201,7 @@ footer{padding:70px 0 50px}
           </div>
           <span class="pf-tag pf-tag--concept">Concept</span>
         </div>
-        <p class="pf-note">Built around the way people actually pick a specialist shop — what they work on, what it costs, and whether they can get you in this week.</p>
+        <p class="pf-note">Built around how people actually pick a specialist shop. What they work on, what it costs, and whether they can get you in this week.</p>
         <div class="pf-facts"><span>Service booking</span><span>Marque filtering</span><span>Industrial palette</span></div>
       </article>
 
@@ -1188,9 +1209,9 @@ footer{padding:70px 0 50px}
 
     <!-- EDIT: keep this honest. Remove a claim only when it stops being true. -->
     <p class="work-disclaimer reveal">
-      <b>I'd rather tell you than have you find out.</b> Pieces marked <b>Client build</b> were designed and built for real businesses who hired me.
-      Pieces marked <b>Concept</b> I made myself — fictional brands, or a redesign I proposed rather than got paid for.
-      I'm not going to pass one off as the other. Nothing here is a stock template or somebody else's work.
+      <b>I'd rather tell you than have you find out.</b> <b>Client build</b> means a real business hired me and this is what they got.
+      <b>Concept</b> means I made it myself: invented brands, or a redesign I pitched and never got paid for.
+      Both are my work. Neither is a template.
     </p>
   </div>
 </section>
@@ -1202,10 +1223,10 @@ footer{padding:70px 0 50px}
      ============================================================ -->
 <section id="about" style="padding-top:clamp(90px,10vw,140px)">
   <div class="wrap">
-    <div class="ed ed--flip reveal">
+    <div class="ed ed--flip ed--tight reveal">
       <div class="ed-fig ed-fig--framed">
         <img src="founder.jpg" alt="Mya, founder of MTM Marketing" width="900" height="1125" loading="lazy" style="aspect-ratio:4/5;object-fit:cover;object-position:center top" />
-        <p class="cap">Mya — founder, designer and the person who actually builds the thing.</p>
+        <p class="cap">Mya. I design them and I build them.</p>
       </div>
       <div class="ed-body">
         <span class="rule-label">Why I do this</span>
@@ -1213,9 +1234,9 @@ footer{padding:70px 0 50px}
           <span class="l1">Your trade,</span>
           <span class="l2">my whole job.</span>
         </h2>
-        <p>I didn't get into this to build websites for tech companies. I got into it because I kept meeting people who were <b>excellent at something real</b> — hardwood floors, brickwork, pest control — and were getting beaten online by companies who were worse at the actual work.</p>
-        <p>That's a solvable problem, and it bothers me that it goes unsolved for so long. Most owners have been quoted five figures by an agency that wanted a twelve-month retainer, or sold a template by someone who never asked what they do. Both of those are reasons to give up on it. Neither of them is the only option.</p>
-        <p>So this is the whole business: <b>local trades and home services, one client at a time, built by the person you talked to on the phone.</b> No account manager, no handoff, no team of subcontractors you'll never meet. If you hire me, you get me.</p>
+        <p>I didn't get into this to build websites for software startups. I got into it because I kept meeting people who were <b>excellent at something real</b>. Hardwood floors. Brickwork. Pest control. And then watching them lose online to companies who were worse at the job.</p>
+        <p>It's a fixable problem, and it usually goes unfixed for years. Most owners I talk to have already been quoted five figures by an agency that wanted a twelve-month retainer on top of it. Or sold a four-hundred-dollar template by somebody who never asked what they actually do. After that, giving up on the whole idea is a pretty reasonable response. It's just not the only one.</p>
+        <p>So that's the business. <b>Local trades and home services, one client at a time, built by whoever you talked to on the phone.</b> Which is me. There's no account manager and no handoff to a team you never meet.</p>
         <a href="#teardown" class="btn btn--pill">Start with the free teardown</a>
       </div>
     </div>
@@ -1236,8 +1257,8 @@ footer{padding:70px 0 50px}
           <span class="l1">What's costing</span>
           <span class="l2">you the call?</span>
         </h2>
-        <p class="lede">Send me your website. I'll record a ten-minute video walking through it as if I were the customer trying to hire you — and tell you exactly where they give up.</p>
-        <p>You get the video whether or not we ever work together. If the fix is something you can do yourself in an afternoon, I'll tell you that too, and you should go do it.</p>
+        <p class="lede">Send me your website. I'll record a ten-minute video walking through it as if I were the customer trying to hire you, and show you where they give up.</p>
+        <p>You keep the video whether or not we ever work together. And if the fix turns out to be something you can do yourself in an afternoon, I'll say so. Go do it.</p>
         <a href="#contact" class="btn" data-book>Send me your site
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
@@ -1245,12 +1266,12 @@ footer{padding:70px 0 50px}
       <div class="ed-body">
         <ul class="offer-list">
           <li><span class="n">01</span><span><b>Where people leave.</b> The exact point on your homepage a homeowner stops reading and goes back to Google.</span></li>
-          <li><span class="n">02</span><span><b>What you're not saying.</b> The services, credentials and years-in-business that are on your truck but not on your site.</span></li>
-          <li><span class="n">03</span><span><b>How it does on a phone.</b> Loaded on real mobile data, thumbs and all — where most of your traffic actually is.</span></li>
+          <li><span class="n">02</span><span><b>What you're not saying.</b> The services and credentials that are on the side of your truck but nowhere on your site.</span></li>
+          <li><span class="n">03</span><span><b>How it does on a phone.</b> Loaded on real mobile data, thumbs and all. That's where most of your traffic is.</span></li>
           <li><span class="n">04</span><span><b>Who's beating you and why.</b> A straight look at the competitor ranking above you, and what their site is doing that yours isn't.</span></li>
           <li><span class="n">05</span><span><b>What I'd fix first.</b> Ranked by what it costs you, not by what it would cost me to build.</span></li>
         </ul>
-        <p class="offer-note">Turnaround is usually two business days. I only take a handful of these a week, so if the queue is full I'll tell you rather than rush yours.</p>
+        <p class="offer-note">Turnaround is usually two business days. I only take a few of these a week. If the queue is full I'll say so rather than rush yours.</p>
       </div>
     </div>
   </div>
@@ -1261,27 +1282,24 @@ footer{padding:70px 0 50px}
   <div class="wrap">
     <div class="sec-head--ed reveal" style="max-width:820px">
       <span class="rule-label">If you decide to go ahead</span>
-      <h2 class="dual">
-        <span class="l1">Three steps,</span>
-        <span class="l2">and I do most of them.</span>
-      </h2>
-      <p class="lede">You've got a business to run. The whole point is that this takes a couple of hours of your time, not a couple of weeks.</p>
+      <h2 class="h-flat">Three steps, and I do<br>most of them for you.</h2>
+      <p class="lede">You've got a business to run. This should cost you a couple of hours, not a couple of weeks.</p>
     </div>
     <div class="cards">
       <article class="card reveal">
         <div class="ic"><span style="font-family:var(--font-display);font-size:28px;color:var(--teal-cta);line-height:1">1</span></div>
         <h3>I learn the business</h3>
-        <p>One call about what you do, who you want more of, and what makes your crew the right call. That conversation is what the design gets built on — not a questionnaire I email you and leave you to fill in alone.</p>
+        <p>One call about what you do and who you want more of. That conversation is what the design gets built on. I'm not going to email you a questionnaire and leave you to fill it in by yourself.</p>
       </article>
       <article class="card reveal">
         <div class="ic"><span style="font-family:var(--font-display);font-size:28px;color:var(--teal-cta);line-height:1">2</span></div>
         <h3>I design it around your customer</h3>
-        <p>You see real design, not a wireframe — your photos, your services, your words. We go back and forth until the homepage is right, then the rest of the site follows it. You approve it before a single page gets built.</p>
+        <p>You see real design, not a wireframe. Your photos, your services, your words. We go back and forth until the homepage is right, then the rest of the site follows it. Nothing gets built until you say yes.</p>
       </article>
       <article class="card reveal">
         <div class="ic"><span style="font-family:var(--font-display);font-size:28px;color:var(--teal-cta);line-height:1">3</span></div>
         <h3>I build it and handle the switch</h3>
-        <p>Hand-coded, fast on a phone, and wired so every form and call button actually reaches you. Hosting, domain, SSL, redirects — I deal with all of it. You don't have to find a password from 2014.</p>
+        <p>Hand-coded, fast on a phone, wired so every form and call button actually reaches you. Hosting, domain, SSL, redirects off the old site: I deal with all of it. You don't have to go hunting for a password from 2014.</p>
       </article>
     </div>
     <p class="price-reassure reveal" style="margin-top:34px"><span class="mk">→</span> <b>Nothing gets built until you've seen the design and said yes.</b></p>
@@ -1299,14 +1317,14 @@ footer{padding:70px 0 50px}
           <span class="l1">I design for the trades,</span>
           <span class="l2">not for design awards.</span>
         </h2>
-        <p>Most studios have never set foot on a job site. I only build for one kind of business, which means I already know how homeowners choose a contractor, what makes them call instead of closing the tab, and the three things they need to see before they'll trust you with their house.</p>
-        <p>That's the whole advantage. Every decision on the page gets made against how your customers actually buy — which is why none of this looks like the template every other contractor in your area is using.</p>
+        <p>Most studios have never set foot on a job site. I build for one kind of business and nothing else, so I already know how a homeowner picks a contractor and what makes them call instead of closing the tab.</p>
+        <p>That's the whole advantage. Every decision on the page gets made against how your customers actually buy, which is why none of this looks like the template every other contractor in your area is running.</p>
       </div>
       <!-- What the focus actually buys you — plain, checkable claims. -->
       <ul class="focus-list">
         <li><b>You don't have to explain your own trade to me.</b> No walking me through the difference between refinishing and recoating, or why a builder and a homeowner need different forms.</li>
         <li><b>I design for a phone in a work glove.</b> Tap targets, click-to-call, and pages that load on one bar of signal.</li>
-        <li><b>I know what makes someone call.</b> Licences, years in business, real job photos and a straight answer on price — placed where they actually get read.</li>
+        <li><b>I know what makes someone call.</b> Licenses, years in business, real job photos, a straight answer on price. Placed where they actually get read.</li>
         <li><b>One person, start to finish.</b> Whoever picks up the phone is the person designing it and the person building it. That's me.</li>
       </ul>
     </div>
@@ -1318,11 +1336,8 @@ footer{padding:70px 0 50px}
   <div class="wrap">
     <div class="sec-head--ed reveal" style="max-width:820px">
       <span class="rule-label">What you get</span>
-      <h2 class="dual">
-        <span class="l1">There's no bronze, silver</span>
-        <span class="l2">or gold. It's all of it.</span>
-      </h2>
-      <p class="lede">No tiers to decode and no upsell waiting at step four. Your project gets scoped and quoted on its own — what it needs, what it costs, agreed before anything starts.</p>
+      <h2 class="h-flat">There's no bronze,<br>silver or gold.</h2>
+      <p class="lede">No tiers to decode and no upsell waiting at step four. Your project gets scoped and quoted on its own. What it needs, what it costs, agreed before anything starts.</p>
     </div>
 
     <div class="cap-grid reveal">
@@ -1334,7 +1349,7 @@ footer{padding:70px 0 50px}
       <div class="cap">
         <span class="n">02 — COPY</span>
         <h3>Words that sound like you</h3>
-        <p>I write the site from the call we have — what you already say to customers, cleaned up. You review every line before it goes anywhere.</p>
+        <p>I write the site from the call we have. It's what you already say to customers, cleaned up. You review every line before it goes anywhere.</p>
       </div>
       <div class="cap">
         <span class="n">03 — BUILD</span>
@@ -1344,21 +1359,21 @@ footer{padding:70px 0 50px}
       <div class="cap">
         <span class="n">04 — CONVERSION</span>
         <h3>Built to make the phone ring</h3>
-        <p>Call buttons, quote forms and trust signals placed where they get used — the whole reason the site exists.</p>
+        <p>Call buttons, quote forms and trust signals, placed where they get used. That's the whole reason the site exists.</p>
       </div>
       <div class="cap">
         <span class="n">05 — FOUNDATION</span>
         <h3>Set up to be found</h3>
-        <p>Clean structure, service and location pages, page titles and schema in place — so the site is ready to rank rather than needing a rebuild later.</p>
+        <p>Clean structure, service and location pages, titles and schema already in place. The site is ready to rank instead of needing a rebuild first.</p>
       </div>
       <div class="cap">
         <span class="n">06 — LAUNCH</span>
         <h3>I handle the switch</h3>
-        <p>Hosting, domain, SSL, redirects from the old site. You don't have to call anyone, chase a login, or find a password from 2014.</p>
+        <p>Hosting, domain, SSL, redirects from the old site. Nothing on your end goes dark while it happens.</p>
       </div>
     </div>
 
-    <p class="price-reassure reveal" style="margin-top:38px"><span class="mk">→</span> Want it looked after and marketed once it's live? <b>I do that too — but it's not required, and I won't push it.</b></p>
+    <p class="price-reassure reveal" style="margin-top:38px"><span class="mk">→</span> Want it looked after and marketed once it's live? <b>I do that too. It's not required and I won't push it.</b></p>
   </div>
 </section>
 
@@ -1371,8 +1386,8 @@ footer{padding:70px 0 50px}
         <span class="l1">A few at a time,</span>
         <span class="l2" style="color:var(--butter)">so each one gets done properly.</span>
       </h2>
-      <p>I take <b style="color:#fff">one client per service area</b>. Not as a sales tactic — if I built for two flooring companies in the same city, I'd be designing one against the other, and one of you would be paying me to lose. So if your area is open, it's yours.</p>
-      <p>And I keep the number of builds low on purpose. Everything here was designed from scratch, which isn't something you can do ten at a time and still do well. <b style="color:#fff">If the calendar is full, I'll tell you when the next slot opens instead of rushing yours.</b></p>
+      <p>I take <b style="color:#fff">one client per service area</b>. That isn't a scarcity tactic. If I built for two flooring companies in the same city I'd be designing one against the other, and one of you would be paying me to lose. So if your area is open, it's yours.</p>
+      <p>I also keep the number of builds low on purpose. Everything here was drawn from scratch, and that isn't something you can do ten at a time and still do well. <b style="color:#fff">If the calendar's full I'll tell you when the next slot opens instead of rushing yours.</b></p>
       <div style="margin-top:34px"><a href="#contact" class="btn btn--pill on-dark" data-book>Check if your area is open</a></div>
     </div>
   </div>
@@ -1384,36 +1399,33 @@ footer{padding:70px 0 50px}
     <div class="faq-grid">
       <div class="reveal">
         <span class="rule-label">Common questions</span>
-        <h2 class="dual" style="font-size:clamp(30px,3.6vw,50px)">
-          <span class="l1">The things</span>
-          <span class="l2">everyone asks.</span>
-        </h2>
+        <h2 class="h-serif" style="font-size:clamp(32px,4vw,54px)">The things everyone asks.</h2>
         <p class="lede" style="font-size:17px;margin-top:22px">If yours isn't here, ask it on the call. I'd rather answer it than have you guess.</p>
       </div>
       <div class="faq-list reveal">
         <div class="faq-item open">
           <button class="faq-q">How long does a site take?<span class="ic">+</span></button>
-          <div class="faq-a"><p>Most builds run two to four weeks from our first call to going live. The part that decides it is usually photos and how fast you can review the design — not the building.</p></div>
+          <div class="faq-a"><p>Most builds run two to four weeks from the first call to going live. What decides it is usually photos and how fast you can review the design. The building itself is the predictable part.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-q">What does it cost?<span class="ic">+</span></button>
-          <div class="faq-a"><p>Every project is quoted on its own, because a three-page site for a solo operator and a twenty-page site for a multi-crew company aren't the same job. You get one fixed number before anything starts — no hourly billing, no surprise invoice at the end. If your budget and the job don't line up, I'll say so on the call rather than talk you into something.</p></div>
+          <div class="faq-a"><p>Every project gets quoted on its own, because a three-page site for a solo operator and a twenty-page site for a multi-crew company aren't the same job. You get one fixed number before anything starts. No hourly billing and no surprise invoice at the end. If your budget and the job don't line up, I'll say so on the call instead of talking you into it.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-q">I don't have good photos. Is that a problem?<span class="ic">+</span></button>
-          <div class="faq-a"><p>It's the most common one, and it's not a blocker. Phone photos from real jobs beat stock every time — I'll tell you exactly what to shoot and how, and design around what you actually have. Nobody hires a contractor because of a stock photo of a handshake.</p></div>
+          <div class="faq-a"><p>It's the most common one and it isn't a blocker. Phone photos off real jobs beat stock every time. I'll tell you what to shoot, and design around what you've actually got. Nobody ever hired a contractor because of a stock photo of a handshake.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-q">Do I own the site when it's done?<span class="ic">+</span></button>
-          <div class="faq-a"><p>Yes. The site, the domain and the content are yours. If you ever want to move it somewhere else or hand it to someone new, you can — nothing is held hostage.</p></div>
+          <div class="faq-a"><p>Yes. The site, the domain and the content are yours. If you ever want to move it somewhere else or hand it to somebody new, you can. Nothing is held hostage.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-q">Can you update it after launch?<span class="ic">+</span></button>
-          <div class="faq-a"><p>Yes — I handle updates, new service pages and photo swaps as they come up. Some clients also have me look after the marketing side once the site is live. Neither is required, and neither gets bundled in without you asking for it.</p></div>
+          <div class="faq-a"><p>Yes. I handle updates, new service pages and photo swaps as they come up. Some clients have me look after the marketing side once the site is live. Neither is required, and neither gets bundled in without you asking.</p></div>
         </div>
         <div class="faq-item">
           <button class="faq-q">Do you work with my competitors?<span class="ic">+</span></button>
-          <div class="faq-a"><p>No. One client per service area — once yours is taken, your local competitors can't hire me. It works the other way too: if I've already built for someone in your patch, I'll tell you on the first call instead of taking your money.</p></div>
+          <div class="faq-a"><p>No. One client per service area. Once yours is taken, your local competitors can't hire me. It works the other way too: if I've already built for somebody in your area, I'll tell you on the first call instead of taking your money.</p></div>
         </div>
       </div>
     </div>
@@ -1428,7 +1440,7 @@ footer{padding:70px 0 50px}
         <span class="l1">You've done the hard part</span>
         <span class="l2" style="color:var(--butter)">already.</span>
       </h2>
-      <p>A free 15-minute call. Tell me about the business and I'll tell you honestly what your site should be doing differently — including if the answer is "not much, save your money."</p>
+      <p>A free 15-minute call. Tell me about the business and I'll tell you what your site should be doing differently. Including if the answer is "not much, save your money."</p>
       <a href="#contact" class="btn btn--light" data-book>Book the call
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
