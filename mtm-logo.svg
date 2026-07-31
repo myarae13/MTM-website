@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 380" font-family="Anton, Impact, 'Arial Narrow', sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="55 -129 638 550" font-family="Anton, Impact, 'Arial Narrow', sans-serif">
   <defs>
     <style>
       .mtm { font-size: 280px; font-style: italic; font-weight: 400; letter-spacing: -6px; }
@@ -7,14 +7,14 @@
     </style>
   </defs>
   <g text-anchor="middle">
-    <!-- MTM stack -->
-    <text class="mtm" x="356" y="246" fill="#d96b3a">MTM</text>
-    <text class="mtm" x="348" y="238" fill="#1f2a4a">MTM</text>
-    <text class="mtm front" x="336" y="226" fill="#e8c98a" stroke="#1f2a4a" stroke-width="6">MTM</text>
+    <!-- MTM stack — brass face, ink stroke, brick offset -->
+    <text class="mtm" x="356" y="246" fill="#9c4a2f">MTM</text>
+    <text class="mtm" x="348" y="238" fill="#14110f">MTM</text>
+    <text class="mtm front" x="336" y="226" fill="#c98a3c" stroke="#14110f" stroke-width="6">MTM</text>
 
     <!-- MARKETING stack -->
-    <text class="mk" x="350" y="358" fill="#d96b3a">MARKETING</text>
-    <text class="mk" x="346" y="354" fill="#1f2a4a">MARKETING</text>
-    <text class="mk front" x="340" y="348" fill="#e8c98a" stroke="#1f2a4a" stroke-width="4">MARKETING</text>
+    <text class="mk" x="350" y="358" fill="#9c4a2f">MARKETING</text>
+    <text class="mk" x="346" y="354" fill="#14110f">MARKETING</text>
+    <text class="mk front" x="340" y="348" fill="#c98a3c" stroke="#14110f" stroke-width="4">MARKETING</text>
   </g>
 </svg>
