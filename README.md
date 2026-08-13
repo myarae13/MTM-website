@@ -29,14 +29,31 @@ Other files: `og.png` (social card), `robots.txt`, `sitemap.xml`, `vercel.json`
 
 ## Editing
 
-**Booking link.** One value near the bottom of the `<script>` block:
+**Go High Level embeds.** Two ids near the bottom of the `<script>` block drive
+everything:
 
 ```js
-const BOOKING_URL = "https://calendly.com/YOUR-HANDLE/intro";
+const GHL = {
+  CALENDAR_ID: "",   // 15-minute call  → contact section
+  FORM_ID:     "",   // teardown form   → offer section
+};
 ```
 
-Every `[data-book]` button uses it. Until it's a real URL, each button keeps the
-working `mailto:` / `tel:` href already in its markup — nothing is ever a dead link.
+- `CALENDAR_ID` — GHL → Calendars → your calendar → **Copy Link**, then take the
+  last path segment of `.../widget/booking/<id>`.
+- `FORM_ID` — GHL → Sites → Forms → your form → **Integrate → Inline**, then take
+  the last path segment of `.../widget/form/<id>`.
+
+Each `[data-ghl]` mount ships with a working `mailto:` / `tel:` fallback inside
+it. If the id is blank the fallback stays; if the id is set, an iframe replaces
+it and GHL's `form_embed.js` resizer is appended (only then — a blank config
+pulls no third-party script). **Nothing is ever a dead link in either state.**
+
+The two CTAs are deliberately different asks: the form is the low-commitment
+teardown, the calendar is the bigger phone-call ask. Don't collapse them into one.
+
+Note that the embeds are styled by GHL, not by this stylesheet. Match them in
+GHL's own form/calendar builder or they'll read as foreign to the page.
 
 **Adding a build.** Copy one `<article class="w-row">`, bump the number, drop a
 screenshot in `work/`, and set the tag honestly — `w-tag--client` for a real

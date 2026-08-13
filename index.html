@@ -227,6 +227,21 @@ h3{font-size:20px;letter-spacing:-.02em;line-height:1.2}
 .offer-list .n{font-size:12px;font-weight:700;color:var(--brick);font-variant-numeric:tabular-nums}
 .offer-note{margin-top:22px;font-size:14px;line-height:1.7;color:var(--ink-3)}
 
+/* ============================================================ GHL EMBEDS
+   A mount holds its own working fallback (mailto / tel) until a real
+   GHL id is set. If an id is set, the iframe replaces the fallback.
+   Either way the visitor has something that works.
+   ============================================================ */
+.ghl-mount{margin-top:34px}
+.ghl-frame{
+  width:100%;border:1px solid var(--line);border-radius:8px;
+  background:var(--ground);overflow:hidden;display:block;
+}
+.ghl-mount--cal{max-width:760px;margin-left:auto;margin-right:auto;text-align:left}
+.ghl-loading{
+  padding:28px 0;font-size:14px;color:var(--ink-3);text-align:center;
+}
+
 /* ============================================================ GOOD TO KNOW */
 .gtk{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3.4vw,48px)}
 .gtk div{border-top:2px solid var(--brass);padding-top:20px}
@@ -484,9 +499,12 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
         <span class="eyebrow">Free · no catch · you keep it either way</span>
         <h2>What's costing<br>you the call?</h2>
         <p class="lede">Send me your website. I'll record a ten-minute video walking through it as the customer trying to hire you, and show you where they give up.</p>
-        <a href="mailto:myarae1310@gmail.com?subject=Free%20site%20teardown&amp;body=Here%27s%20my%20website%3A%20%0A%0AMy%20business%3A%20%0AMy%20phone%3A%20" class="btn" data-book>Send me your site
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
+        <!-- GHL teardown form mounts here; the mailto below is the fallback -->
+        <div class="ghl-mount" data-ghl="form">
+          <a href="mailto:myarae1310@gmail.com?subject=Free%20site%20teardown&amp;body=Here%27s%20my%20website%3A%20%0A%0AMy%20business%3A%20%0AMy%20phone%3A%20" class="btn">Send me your site
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
       </div>
       <div>
         <ul class="offer-list">
@@ -530,9 +548,12 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     <div class="reveal">
       <h2>You've done the hard part already.</h2>
       <p>A free 15-minute phone call. Tell me about the business and I'll tell you what your site should be doing differently, including if the answer is not much.</p>
-      <a href="tel:+19206067760" class="btn" data-book>Book the phone call
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </a>
+      <!-- GHL booking calendar mounts here; the tel below is the fallback -->
+      <div class="ghl-mount ghl-mount--cal" data-ghl="calendar">
+        <a href="tel:+19206067760" class="btn">Book the phone call
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
       <p class="contact-risk">No obligation, no pitch deck, no follow-up sequence.</p>
       <p class="contact-direct">Or skip the scheduling and just reach me:
         <a href="tel:+19206067760">(920) 606-7760</a>
@@ -587,19 +608,66 @@ rows.forEach(row => {
 });
 
 /* ============================================================
-   BOOKING — set this ONE value to your Calendly link. Every
-   "Send me your site" / "Book the phone call" button uses it.
-   Until it's a real URL, each button keeps the working href
-   already in the HTML (mailto / tel), so nothing is ever dead.
+   GO HIGH LEVEL EMBEDS
+   ------------------------------------------------------------
+   EDIT: paste the two ids from your GHL sub-account below.
+
+     CALENDAR_ID  Calendars → your calendar → Copy Link.
+                  Take the last path segment of that URL:
+                  .../widget/booking/THIS_PART
+
+     FORM_ID      Sites → Forms → your form → Integrate → Inline.
+                  Take the last path segment of the iframe src:
+                  .../widget/form/THIS_PART
+
+   Leave one blank and that spot keeps the mailto / tel fallback
+   already in the markup. Nothing is ever a dead link.
    ============================================================ */
-const BOOKING_URL = "https://calendly.com/YOUR-HANDLE/intro";  /* EDIT: paste your Calendly link */
-const bookReady = /^https?:\/\//.test(BOOKING_URL) && !BOOKING_URL.includes("YOUR-HANDLE");
-if (bookReady) {
-  document.querySelectorAll('[data-book]').forEach(el => {
-    el.setAttribute('href', BOOKING_URL);
-    el.setAttribute('target', '_blank');
-    el.setAttribute('rel', 'noopener');
-  });
+const GHL = {
+  CALENDAR_ID: "",   /* EDIT: booking calendar for the 15-minute call */
+  FORM_ID:     "",   /* EDIT: teardown form that captures their site URL */
+};
+
+const GHL_SRC = {
+  calendar: id => `https://api.leadconnectorhq.com/widget/booking/${id}`,
+  form:     id => `https://api.leadconnectorhq.com/widget/form/${id}`,
+};
+const GHL_MIN_H = { calendar: 640, form: 460 };
+
+const clean = v => (v || "").trim();
+let mountedAny = false;
+
+document.querySelectorAll('[data-ghl]').forEach(mount => {
+  const kind = mount.dataset.ghl;                   // "calendar" | "form"
+  const id = clean(kind === 'calendar' ? GHL.CALENDAR_ID : GHL.FORM_ID);
+  if (!id) return;                                  // keep the fallback
+
+  const frame = document.createElement('iframe');
+  frame.src = GHL_SRC[kind](id);
+  frame.className = 'ghl-frame';
+  frame.title = kind === 'calendar'
+    ? 'Book a free 15-minute phone call'
+    : 'Send your website for a free teardown';
+  frame.loading = 'lazy';
+  frame.scrolling = 'no';
+  frame.style.minHeight = GHL_MIN_H[kind] + 'px';
+  /* form_embed.js keys off these to auto-resize the iframe */
+  frame.id = `inline-${id}`;
+  frame.setAttribute('data-layout', '{"id":"INLINE"}');
+  frame.setAttribute('data-trigger-type', 'alwaysShow');
+  frame.setAttribute('data-layout-iframe-id', `inline-${id}`);
+  frame.setAttribute('data-form-id', id);
+
+  mount.replaceChildren(frame);
+  mountedAny = true;
+});
+
+/* Only pull GHL's resizer script if something actually mounted. */
+if (mountedAny) {
+  const s = document.createElement('script');
+  s.src = 'https://link.msgsndr.com/js/form_embed.js';
+  s.async = true;
+  document.body.appendChild(s);
 }
 </script>
 </body>
