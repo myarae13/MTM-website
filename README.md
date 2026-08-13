@@ -1,30 +1,66 @@
 # MTM Website
 
-Conversion-focused portfolio site for **MTM Marketing** — a single-file static website built on the AIW "Trust + Conversion" wireframe. Styled to match the MTM logo: a retro, layered-offset look in navy · terracotta · cream-gold on a dusty-blue ground. Brand mark lives in `mtm-logo.svg`.
+Marketing site for **MTM Marketing** — websites for local trade and home-service
+businesses. Single static page, no build step, hosted on Vercel.
+
+## Design
+
+Light ground, one typeface (Schibsted Grotesk), brass as a graphic accent and
+brick as the readable accent. The boldness is spent in one place: the work index.
+
+Tokens live in `:root` at the top of the `<style>` block in `index.html`.
+
+| Token | Value | Use |
+|---|---|---|
+| `--ink` | `#12100e` | headings, primary buttons |
+| `--ink-2` | `#4f4a43` | body copy |
+| `--ink-3` | `#6f6960` | meta, captions |
+| `--brick` | `#9c4a2f` | readable accent, eyebrows, hover |
+| `--brass` | `#b57a2e` | graphic only — underlines, rules |
 
 ## Structure
 
-`index.html` is fully self-contained (HTML + CSS + JS inline). No build step.
+`index.html` is fully self-contained (HTML + CSS + JS inline).
 
-Sections, in order: Hero → 3 reason cards → Portfolio → 5-step Process → Pain & Solution → Testimonials → Reviews + logos → About → FAQ → CTA.
+Hero → Work index → Founder → Free teardown → Good to know → Contact → Footer.
+
+Other files: `og.png` (social card), `robots.txt`, `sitemap.xml`, `vercel.json`
+(security headers), `work/` (project screenshots), `founder.jpg`, logo assets.
 
 ## Editing
 
-Everything you need to customize is tagged with `<!-- EDIT -->` comments:
-- Studio/your name, `[your niche]`, phone number
-- Hero headline + founder photo
-- Portfolio screenshots (replace each `.thumb` gradient with an `<img>`)
-- Testimonials (the `TESTIMONIALS` array in the `<script>`)
-- CTA link (currently `mailto:` — swap for Calendly/Formspree)
+**Booking link.** One value near the bottom of the `<script>` block:
+
+```js
+const BOOKING_URL = "https://calendly.com/YOUR-HANDLE/intro";
+```
+
+Every `[data-book]` button uses it. Until it's a real URL, each button keeps the
+working `mailto:` / `tel:` href already in its markup — nothing is ever a dead link.
+
+**Adding a build.** Copy one `<article class="w-row">`, bump the number, drop a
+screenshot in `work/`, and set the tag honestly — `w-tag--client` for a real
+paying client, `w-tag--concept` for self-initiated work.
+
+**Standing rule: no fabricated social proof.** No testimonials, client logos or
+results that aren't real. The page labels client builds vs concepts on purpose.
+
+**If the domain changes,** update the absolute URLs in `<head>` (canonical, `og:`,
+`twitter:`), the JSON-LD block, `robots.txt` and `sitemap.xml`.
 
 ## Local preview
-
-Open `index.html` directly in a browser, or serve it:
 
 ```bash
 python3 -m http.server 8000
 ```
 
+Then open <http://localhost:8000>.
+
+## Regenerating the social card
+
+`og.png` is rendered from a standalone HTML card at 1200×630 with headless
+Chromium. Keep it in sync with the hero headline if that changes.
+
 ## Deploy
 
-Hosted on Vercel as a static site.
+Hosted on Vercel, deployed from `main` on GitHub.
