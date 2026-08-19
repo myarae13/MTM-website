@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>MTM Marketing — Websites for local trades &amp; home services</title>
-<meta name="description" content="I build websites for contractors and home-service companies. Six builds, no templates. Get a free ten-minute site teardown, no obligation." />
+<meta name="description" content="I build websites for contractors and home-service companies. Book a free 30-minute phone call, no obligation." />
 <link rel="canonical" href="https://mtmmarketer.com/" />
 <meta name="theme-color" content="#12100e" />
 
@@ -14,14 +14,14 @@
 <meta property="og:url" content="https://mtmmarketer.com/" />
 <meta property="og:site_name" content="MTM Marketing" />
 <meta property="og:title" content="You built something that works. Your website hasn't caught up." />
-<meta property="og:description" content="Websites for local trades and home services, designed and built by one person. Free ten-minute site teardown, no obligation." />
+<meta property="og:description" content="Websites for local trades and home services, designed and built by one person. Book a free 30-minute phone call, no obligation." />
 <meta property="og:image" content="https://mtmmarketer.com/og.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="MTM Marketing — websites for local trades and home services" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="You built something that works. Your website hasn't caught up." />
-<meta name="twitter:description" content="Websites for local trades and home services, designed and built by one person. Free ten-minute site teardown, no obligation." />
+<meta name="twitter:description" content="Websites for local trades and home services, designed and built by one person. Book a free 30-minute phone call, no obligation." />
 <meta name="twitter:image" content="https://mtmmarketer.com/og.png" />
 
 <link rel="icon" type="image/svg+xml" href="mtm-logo.svg" />
@@ -34,7 +34,8 @@
 /* ============================================================
    MTM MARKETING
    Light ground, one sans, brass as graphic accent, brick as the
-   readable accent. Boldness is spent in one place: the work index.
+   readable accent. Two sections only: the hero and the booking
+   calendar.
    ============================================================ */
 :root{
   --ground:#ffffff;
@@ -101,12 +102,6 @@ h3{font-size:20px;letter-spacing:-.02em;line-height:1.2}
 .btn:hover{background:var(--brick);border-color:var(--brick);transform:translateY(-2px)}
 .btn svg{width:17px;height:17px;transition:transform .3s var(--ease)}
 .btn:hover svg{transform:translateX(4px)}
-.btn--ghost{background:transparent;color:var(--ink);border-color:var(--line)}
-.btn--ghost:hover{background:transparent;color:var(--brick);border-color:var(--brick)}
-
-/* ---- section rhythm ---- */
-.sec{padding:clamp(84px,10.5vw,150px) 0}
-.sec-head{margin-bottom:clamp(48px,6vw,76px)}
 
 /* ============================================================ HEADER */
 #hdr{
@@ -147,88 +142,9 @@ h3{font-size:20px;letter-spacing:-.02em;line-height:1.2}
 .hero-cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:38px}
 .hero-trust{margin-top:26px;font-size:14px;color:var(--ink-3);letter-spacing:.01em}
 
-/* ============================================================ WORK INDEX
-   Desktop: rows on the left, one preview held on the right.
-   Mobile: the same rows, each with its image inline.
-   ============================================================ */
-.w-index{position:relative}
-.w-row{
-  position:static;                 /* figures resolve against .w-index */
-  display:grid;grid-template-columns:44px 1fr auto;
-  align-items:baseline;gap:0 4px;
-  padding:22px 0;border-top:1px solid var(--line);
-  cursor:default;
-  transition:border-color .3s var(--ease);
-}
-.w-row:last-of-type{border-bottom:1px solid var(--line)}
-.w-num{
-  font-size:12px;font-weight:700;color:var(--brick);
-  font-variant-numeric:tabular-nums;letter-spacing:.06em;
-}
-.w-name h3{transition:color .3s var(--ease)}
-.w-sector{display:block;margin-top:5px;font-size:14px;color:var(--ink-3)}
-.w-tag{
-  font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
-  padding:6px 11px;border-radius:999px;white-space:nowrap;
-}
-.w-tag--client{color:var(--brick);background:rgba(156,74,47,.09)}
-.w-tag--concept{color:var(--ink-3);background:var(--ground-2);border:1px solid var(--line)}
-.w-fig figcaption{margin-top:16px;font-size:15px;line-height:1.6;color:var(--ink-2)}
-.w-shot{
-  border:1px solid var(--line);border-radius:6px;overflow:hidden;
-  background:var(--ground-2);
-}
-.w-shot img{width:100%;height:auto}
-.w-note-line{
-  margin-top:34px;font-size:14px;line-height:1.7;color:var(--ink-3);max-width:64ch;
-}
-.w-note-line b{color:var(--ink-2);font-weight:600}
-
-@media (min-width:901px){
-  .w-index{padding-right:calc(50% + 30px);min-height:520px}
-  .w-row:hover h3,.w-row.is-on h3{color:var(--brick)}
-  .w-fig{
-    position:absolute;top:0;right:0;width:50%;
-    opacity:0;visibility:hidden;
-    transform:translateY(10px);
-    transition:opacity .45s var(--ease),transform .45s var(--ease),visibility .45s;
-    pointer-events:none;
-  }
-  .w-row.is-on .w-fig{opacity:1;visibility:visible;transform:none}
-}
-@media (max-width:900px){
-  .w-row{grid-template-columns:36px 1fr;gap:0 4px}
-  .w-tag{grid-column:2;justify-self:start;margin-top:12px}
-  .w-fig{grid-column:1 / -1;margin-top:20px}
-}
-
-/* ============================================================ FOUNDER */
-.founder{display:grid;grid-template-columns:.85fr 1fr;gap:clamp(36px,6vw,84px);align-items:center}
-.founder-fig img{border-radius:6px;border:1px solid var(--line)}
-.founder-fig .cap{margin-top:14px;font-size:14px;color:var(--ink-3)}
-.founder-body p{margin-top:20px;max-width:56ch}
-.founder-body p:first-of-type{margin-top:0}
-.founder-body .btn{margin-top:34px}
-
-/* ============================================================ OFFER */
-.offer{background:var(--ground-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.offer-grid{display:grid;grid-template-columns:1fr .9fr;gap:clamp(36px,6vw,86px)}
-.offer-body .lede{margin-top:22px}
-.offer-body .btn{margin-top:34px}
-.offer-list{list-style:none}
-.offer-list li{
-  display:grid;grid-template-columns:26px 1fr;gap:0 14px;
-  padding:16px 0;border-top:1px solid var(--line);
-  font-size:16px;line-height:1.55;
-}
-.offer-list li:first-child{border-top:0;padding-top:0}
-.offer-list .n{font-size:12px;font-weight:700;color:var(--brick);font-variant-numeric:tabular-nums}
-.offer-note{margin-top:22px;font-size:14px;line-height:1.7;color:var(--ink-3)}
-
-/* ============================================================ GHL EMBEDS
-   A mount holds its own working fallback (mailto / tel) until a real
-   GHL id is set. If an id is set, the iframe replaces the fallback.
-   Either way the visitor has something that works.
+/* ============================================================ GHL EMBED
+   The booking calendar iframe is injected into .ghl-mount by the
+   script at the bottom of the page.
    ============================================================ */
 .ghl-mount{margin-top:34px}
 .ghl-frame{
@@ -239,12 +155,6 @@ h3{font-size:20px;letter-spacing:-.02em;line-height:1.2}
 .ghl-loading{
   padding:28px 0;font-size:14px;color:var(--ink-3);text-align:center;
 }
-
-/* ============================================================ GOOD TO KNOW */
-.gtk{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3.4vw,48px)}
-.gtk div{border-top:2px solid var(--brass);padding-top:20px}
-.gtk h3{font-size:17px;margin-bottom:9px}
-.gtk p{font-size:15px;line-height:1.62;color:var(--ink-2)}
 
 /* ============================================================ CONTACT + FOOTER */
 .contact{text-align:center;padding:clamp(48px,5vw,72px) 0 clamp(64px,7vw,96px)}
@@ -271,12 +181,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 @keyframes rise{to{opacity:1;transform:none}}
 
 /* ============================================================ RESPONSIVE */
-@media (max-width:900px){
-  .founder{grid-template-columns:1fr}
-  .offer-grid{grid-template-columns:1fr}
-  .gtk{grid-template-columns:1fr}
-  .gtk div{padding-top:16px}
-}
 @media (max-width:620px){
   body{font-size:16px}
   .hdr-cta{display:none}
@@ -323,10 +227,10 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   ],
   "makesOffer": {
     "@type": "Offer",
-    "name": "Free ten-minute website teardown",
+    "name": "Free 30-minute website consultation",
     "price": "0",
     "priceCurrency": "USD",
-    "description": "A recorded ten-minute video walkthrough of your existing website from the customer's point of view."
+    "description": "A free 30-minute phone call about what your website should be doing differently."
   }
 }
 </script>
@@ -341,7 +245,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
         <img class="logo-img" src="mtm-logo-t.png" alt="MTM Marketing" />
       </a>
       <div class="hdr-right">
-        <a href="#teardown" class="hdr-cta">Free site teardown</a>
+        <a href="#contact" class="hdr-cta">Book a call</a>
       </div>
     </nav>
   </div>
@@ -354,176 +258,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     <h1 class="fade d2">You built something that works. Your website <span class="uline">hasn't caught up.</span></h1>
     <p class="hero-sub fade d3">I'm Mya. I build websites for contractors and home-service companies who stay busy on word of mouth, then keep losing jobs to a company that isn't as good but shows up first on Google.</p>
     <div class="hero-cta fade d4">
-      <a href="#teardown" class="btn">Get a free site teardown
+      <a href="#contact" class="btn">Book a free phone call
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <a href="#work" class="btn btn--ghost">See the work</a>
     </div>
     <p class="hero-trust fade d4">Free · No obligation · One client per service area</p>
-  </div>
-</section>
-
-<!-- ============================================================ WORK
-     EDIT: to add a build, copy one <article class="w-row">, bump the
-     number, drop a screenshot in work/, and set the tag honestly.
-     ============================================================ -->
-<section class="sec" id="work">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">The work</span>
-      <h2>Six builds.<br>Not one template.</h2>
-      <p class="lede" style="margin-top:24px">Masonry, flooring, pest control, golf. All drawn and coded from scratch. A business that took thirty years to build shouldn't be wearing a theme four other companies in the same county are also wearing.</p>
-    </div>
-
-    <div class="w-index reveal">
-
-      <article class="w-row is-on" tabindex="0">
-        <span class="w-num">01</span>
-        <span class="w-name">
-          <h3>Lady Killers Pest Control</h3>
-          <span class="w-sector">Pest control · Michigan's Upper Peninsula</span>
-        </span>
-        <span class="w-tag w-tag--client">Client build</span>
-        <figure class="w-fig">
-          <div class="w-shot"><img src="work/ladykillers.jpg" alt="Lady Killers Pest Control pest library page, dark navy and cyan with custom pest icon cards" loading="lazy" width="1200" height="917" /></div>
-          <figcaption>Every pest gets its own page and its own icon, so someone searching "carpenter ants" at 11pm lands somewhere that answers them.</figcaption>
-        </figure>
-      </article>
-
-      <article class="w-row" tabindex="0">
-        <span class="w-num">02</span>
-        <span class="w-name">
-          <h3>Heider Hardwood Flooring</h3>
-          <span class="w-sector">Hardwood flooring · Green Bay, WI</span>
-        </span>
-        <span class="w-tag w-tag--client">Client build</span>
-        <figure class="w-fig">
-          <div class="w-shot"><img src="work/heider.jpg" alt="Heider Hardwood Flooring homepage, navy and oak palette with an estimate form" loading="lazy" width="1200" height="917" /></div>
-          <figcaption>Every flooring customer has the same real question: how long until I can walk on it. The hero answers that in three numbers before anything else.</figcaption>
-        </figure>
-      </article>
-
-      <article class="w-row" tabindex="0">
-        <span class="w-num">03</span>
-        <span class="w-name">
-          <h3>Brice Masonry</h3>
-          <span class="w-sector">Masonry · Green Bay, WI</span>
-        </span>
-        <span class="w-tag w-tag--client">Client build</span>
-        <figure class="w-fig">
-          <div class="w-shot"><img src="work/brice.jpg" alt="Brice Masonry homepage, charcoal and amber with a dual-audience bid form" loading="lazy" width="1200" height="917" /></div>
-          <figcaption>This crew sells to builders and homeowners, who need opposite things. The hero form asks which one you are first, then changes the questions to match.</figcaption>
-        </figure>
-      </article>
-
-      <article class="w-row" tabindex="0">
-        <span class="w-num">04</span>
-        <span class="w-name">
-          <h3>Thornberry Creek at Oneida</h3>
-          <span class="w-sector">Championship golf · Oneida, WI</span>
-        </span>
-        <span class="w-tag w-tag--concept">Concept redesign</span>
-        <figure class="w-fig">
-          <div class="w-shot"><img src="work/thornberry.jpg" alt="Thornberry Creek at Oneida golf course homepage, forest green and gold with full-bleed course photography" loading="lazy" width="1200" height="917" /></div>
-          <figcaption>Golf sites usually bury four of their five revenue streams. This one books tee times, weddings, outings and lessons off a single page without hiding any of them.</figcaption>
-        </figure>
-      </article>
-
-      <article class="w-row" tabindex="0">
-        <span class="w-num">05</span>
-        <span class="w-name">
-          <h3>Marea Alta</h3>
-          <span class="w-sector">Seafood restaurant · fictional brand</span>
-        </span>
-        <span class="w-tag w-tag--concept">Concept</span>
-        <figure class="w-fig">
-          <div class="w-shot"><img src="work/mock-restaurant.jpg" alt="Marea Alta restaurant homepage, deep teal with editorial serif type over oyster photography" loading="lazy" width="1200" height="917" /></div>
-          <figcaption>A test of how far a restaurant site can lean into atmosphere while keeping reservations one click away.</figcaption>
-        </figure>
-      </article>
-
-      <article class="w-row" tabindex="0">
-        <span class="w-num">06</span>
-        <span class="w-name">
-          <h3>Lumen Dental Studio</h3>
-          <span class="w-sector">Dental practice · fictional brand</span>
-        </span>
-        <span class="w-tag w-tag--concept">Concept</span>
-        <figure class="w-fig">
-          <div class="w-shot"><img src="work/mock-dental.jpg" alt="Lumen Dental Studio homepage concept, light and calm with treatment cards" loading="lazy" width="1200" height="917" /></div>
-          <figcaption>Built for someone who has been putting off an appointment for two years and needs their blood pressure to come down before they book.</figcaption>
-        </figure>
-      </article>
-
-    </div>
-
-    <p class="w-note-line reveal"><b>I'd rather tell you than have you find out.</b> Client build means a real business hired me and this is what they got. Concept means I made it myself. Both are my work. Neither is a template.</p>
-  </div>
-</section>
-
-<!-- ============================================================ FOUNDER -->
-<section class="sec" id="about" style="padding-top:0">
-  <div class="wrap">
-    <div class="founder reveal">
-      <div class="founder-fig">
-        <img src="founder.jpg" alt="Mya, founder of MTM Marketing" width="900" height="1125" loading="lazy" style="aspect-ratio:4/5;object-fit:cover;object-position:center top" />
-        <p class="cap">Mya. I design them and I build them.</p>
-      </div>
-      <div class="founder-body">
-        <span class="eyebrow">Why I do this</span>
-        <h2>Your trade,<br>my whole job.</h2>
-        <p style="margin-top:26px">I kept meeting people who were excellent at something real. Hardwood floors. Brickwork. Pest control. Then watching them lose online to companies who were worse at the job. It's a fixable problem, and it usually goes unfixed for years.</p>
-        <p>So that's the business. Local trades and home services, one client at a time, built by whoever you talked to on the phone. That's me. No account manager, no handoff to a team you never meet.</p>
-        <a href="#teardown" class="btn btn--ghost">Start with the free teardown</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ FREE TEARDOWN -->
-<section class="sec offer" id="teardown">
-  <div class="wrap">
-    <div class="offer-grid reveal">
-      <div class="offer-body">
-        <span class="eyebrow">Free · no catch · you keep it either way</span>
-        <h2>What's costing<br>you the call?</h2>
-        <p class="lede">Pick a time below. Bring me your website and I'll record a ten-minute video walking through it as the customer trying to hire you, and show you where they give up.</p>
-        <!-- GHL booking calendar mounts here -->
-        <div class="ghl-mount ghl-mount--cal" data-ghl="calendar"></div>
-      </div>
-      <div>
-        <ul class="offer-list">
-          <li><span class="n">01</span><span>The exact point a homeowner stops reading and goes back to Google.</span></li>
-          <li><span class="n">02</span><span>The services on the side of your truck that are nowhere on your site.</span></li>
-          <li><span class="n">03</span><span>How it holds up on a phone, on real mobile data, thumbs and all.</span></li>
-          <li><span class="n">04</span><span>What I'd fix first, ranked by what it costs you rather than what it costs me to build.</span></li>
-        </ul>
-        <p class="offer-note">Turnaround is usually two business days. If the fix turns out to be something you can do yourself in an afternoon, I'll say so. Go do it.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ GOOD TO KNOW
-     The three facts that used to take a services grid, a process
-     section and a six-question FAQ to say.
-     ============================================================ -->
-<section class="sec">
-  <div class="wrap">
-    <div class="gtk reveal">
-      <div>
-        <h3>One fixed quote</h3>
-        <p>Every project is scoped and priced on its own, agreed before anything starts. No hourly billing, no tiers to decode, no surprise invoice at the end.</p>
-      </div>
-      <div>
-        <h3>You own all of it</h3>
-        <p>The site, the domain and the content are yours. If you ever want to move it or hand it to somebody new, you can. Nothing is held hostage.</p>
-      </div>
-      <div>
-        <h3>One client per area</h3>
-        <p>I won't build for two companies competing in the same city. If your service area is open, it's yours. If it isn't, I'll tell you on the first phone call.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -548,9 +287,6 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
         <img class="logo-img" src="mtm-logo-t.png" alt="MTM Marketing" style="height:52px" />
       </a>
       <div class="foot-links">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#teardown">Free teardown</a>
         <a href="#contact">Book a call</a>
       </div>
     </div>
@@ -571,16 +307,6 @@ const io = new IntersectionObserver(es => es.forEach(e => {
   if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
 }), {threshold:.1});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-/* ---- work index: hovering or focusing a row holds its preview ---- */
-const rows = [...document.querySelectorAll('.w-row')];
-const show = row => {
-  rows.forEach(r => r.classList.toggle('is-on', r === row));
-};
-rows.forEach(row => {
-  row.addEventListener('mouseenter', () => show(row));
-  row.addEventListener('focus', () => show(row));
-});
 
 /* ============================================================
    GO HIGH LEVEL EMBEDS
@@ -611,10 +337,8 @@ const clean = v => (v || "").trim();
 const calId = clean(GHL.CALENDAR_ID);
 let mountedAny = false;
 
-/* The same calendar mounts twice (offer section + contact section). GHL's
-   booking widget ids look like `<calendarId>_<unique>`, and form_embed.js
-   resizes by id, so each iframe needs its own suffix or only the first
-   one ever gets resized. */
+/* GHL's booking widget ids look like `<calendarId>_<unique>`, and
+   form_embed.js resizes by id, so each mount gets its own suffix. */
 document.querySelectorAll('[data-ghl="calendar"]').forEach((mount, i) => {
   if (!calId) return;
 
